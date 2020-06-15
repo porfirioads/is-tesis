@@ -20,6 +20,23 @@ Ingeniería de Software de Porfirio Ángel Díaz Sánchez.
 docker run --rm -v $(pwd):/app composer install
 ```
 
+**Asignación de permisos en host:**
+
+```bash
+# El usuario y grupo www son los que acceden por default a los archivos en una
+# aplicación de Nginx, para que el proyecto trabaje correctamente, es necesario
+# crearlos también en el equipo host.
+
+# Crear grupo www.
+sudo groupadd -g 1000 www
+
+# Crear usuario www.
+sudo useradd -u 1000 -ms /bin/bash -g www www
+
+# Asigna propietarios del proyecto.
+sudo chown -R www:porfirioadmin tesis-ing-software/
+```
+
 **Configurar variables de entorno de la aplicación:**
 
 ```bash
