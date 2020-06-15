@@ -14,6 +14,12 @@ Ingeniería de Software de Porfirio Ángel Díaz Sánchez.
 
 ### Configuración del proyecto
 
+**Instalar dependencias de Laravel:**
+
+```bash
+docker run --rm -v $(pwd):/app composer install
+```
+
 **Configurar variables de entorno de la aplicación:**
 
 ```bash
