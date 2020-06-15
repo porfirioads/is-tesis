@@ -44,8 +44,8 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: "$Ayunt.Zac20"
+      MYSQL_DATABASE: sigaz
+      MYSQL_ROOT_PASSWORD: '4YUNT4M13NT0.Z4C4T3C45'
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
@@ -58,6 +58,7 @@ services:
 networks:
   app-network:
     driver: bridge
+
 #Volumes
 volumes:
   dbdata:
