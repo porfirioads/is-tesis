@@ -57,13 +57,21 @@ sudo groupadd -g $HOST_USER_ID www
 # Crear usuario www.
 sudo useradd -u $HOST_USER_ID -ms /bin/bash -g www www
 
+# INSTRUCCIONES PARA MACOS
+# Ver gids en uso.
+dscl . list /Groups PrimaryGroupID | tr -s ' ' | sort -n -t ' ' -k2,2
+# Crea el grupo
+sudo dscl . create /Groups/www gid $HOST_USER_ID
+# Crea el usuario
+sudo dscl . create /Groups/www GroupMembership www
+
 # Asigna propietarios del proyecto.
 sudo chown -R www:porfirioadmin tesis-ing-software/
 
 # Asignar permisos apropiados a carpetas.
-sudo chmod 775 -R tesis-ing-software/
-cd ..    
-sudo chmod 755 -R storage/
+sudo chmod -R 775 tesis-ing-software/
+cd tesis-ing-software
+sudo chmod -R 755 storage/
 
 # Probablemente ocupe volver a ejecutar el chown.
 ```

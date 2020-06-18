@@ -48,6 +48,13 @@ echo json_encode([
     terminal('cat /etc/passwd'),
     terminal('[ -w ../.env ] && echo "Writable" || echo "Not Writable"'),
     terminal('[ -r ../.env ] && echo "Readable" || echo "Not Readable"'),
-    terminal('[ -x ../.env ] && echo "Executable" || echo "Not Executable"'),
+	terminal('[ -x ../.env ] && echo "Executable" || echo "Not Executable"'),
+	terminal('[ -w ../.env ] && echo "Writable" || echo "Not Writable"'),
+    terminal('[ -r ../storage ] && echo "Readable" || echo "Not Readable"'),
+	terminal('[ -r ../bootstrap ] && echo "Executable" || echo "Not Executable"'),
+	terminal('[ -w ../storage ] && echo "Writable" || echo "Not Writable"'),
+	terminal('[ -w ../bootstrap ] && echo "Writable" || echo "Not Writable"'),
+	terminal('[ -x ../storage ] && echo "Executable" || echo "Not Executable"'),
+	terminal('[ -x ../bootstrap ] && echo "Executable" || echo "Not Executable"')
 ]);
 ?>
