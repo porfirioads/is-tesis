@@ -71,7 +71,7 @@ sudo chown -R www:porfirioadmin tesis-ing-software/
 # Asignar permisos apropiados a carpetas.
 sudo chmod -R 775 tesis-ing-software/
 cd tesis-ing-software
-sudo chmod -R 755 storage/
+sudo chmod -R 775 storage/
 
 # Probablemente ocupe volver a ejecutar el chown.
 ```
@@ -161,6 +161,30 @@ systemctl start docker
 docker-compose up -d
 ```
 
+## Comandos de Laravel
+
+**Instalar dependencia de composer:**
+
+```bash
+docker run --rm -v $(pwd):/app composer require [--dev] nombre_del_paquete
+```
+
+**Generar helpers para ides:**
+
+```bash
+# Clean bootstrap/compiled.php
+docker-compose exec app php artisan clear-compiled
+
+# PHPDoc generation for Laravel Facades
+docker-compose exec app php artisan ide-helper:generate
+
+# PHPDocs for models
+docker-compose exec app php artisan ide-helper:models
+
+# PhpStorm Meta file
+docker-compose exec app php artisan ide-helper:meta
+```
+
 ## Solución de errores
 
 **Mensaje:** docker: Got permission denied while trying to connect to the 
@@ -168,11 +192,12 @@ Docker daemon socket at unix:///var/run/docker.sock: Post
 http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix 
 /var/run/docker.sock: connect: permission denied. See 'docker run --help'.
 
-**Solución:** sudo chmod 666 /var/run/docker.sock
+**Solución:** ```sudo chmod 666 /var/run/docker.sock```
+```sudo chown $USER /var/run/docker.sock```
 
 ---
 
-**Mensaje:** Algún error con variables de entorno.
+**Mensaje:** Error general de configuración o archivos no actualizados.
 
 **Solución:**
 
