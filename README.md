@@ -185,6 +185,13 @@ docker-compose exec app php artisan ide-helper:models
 docker-compose exec app php artisan ide-helper:meta
 ```
 
+**Visualización de logs:**
+
+```bash
+# Ver log de laravel
+docker-compose exec app tail -f -n 100 /var/www/storage/logs/laravel.log
+```
+
 ## Solución de errores
 
 **Mensaje:** docker: Got permission denied while trying to connect to the 

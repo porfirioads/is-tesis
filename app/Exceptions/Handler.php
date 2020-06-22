@@ -2,7 +2,12 @@
 
 namespace App\Exceptions;
 
+use App\Http\Responses\JsonResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,7 +34,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param \Throwable $exception
      * @return void
      *
      * @throws \Exception
@@ -42,22 +47,35 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
-        // return parent::render($request, $exception);
-        $data = [
-            'request' => $request,
-            'exception' => $exception->getMessage()
-        ];
-        
-        return response($data)
-            ->header('Content-Type', 'application/json')
-            ->setStatusCode(400);
+        /*
+        400 - BadRequest
+        401 - Unauthorized
+        403 - Forbidden
+        404 - NotFound
+        405 - MethodNotAllowed
+        500 - InternalServerError
+        */
+
+        $class = get_class($exception);
+        $diagonal_index = strrpos($class, '\\');
+        $diagonal_index += $diagonal_index ? 1 : 0;
+        $class = substr($class, $diagonal_index);
+
+        if ($exception instanceof HttpException) {
+            $code = $exception->getStatusCode();
+        } else {
+            $code = 500;
+            Log::error($exception->getTraceAsString());
+        }
+
+        return JsonResponse::error(['application_error' => $class], $code);
     }
 }
