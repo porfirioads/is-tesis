@@ -161,6 +161,14 @@ systemctl start docker
 docker-compose up -d
 ```
 
+**Aplicar cambios después de cambiar Dockerfile o docker-compose.yml:**
+
+```bash
+docker-compose down
+docker-compose build
+docker-compose up -d
+```
+
 ## Comandos de Laravel
 
 **Instalar dependencia de composer:**
@@ -169,11 +177,44 @@ docker-compose up -d
 docker run --rm -v $(pwd):/app composer require [--dev] nombre_del_paquete
 ```
 
+**Crear migración:**
+
+```bash
+docker-compose exec app php artisan make:migration nombre_migracion
+```
+
+**Aplicar migraciones:**
+
+```bash
+docker-compose exec app php artisan migrate:fresh
+```
+
+**Crear controlador:**
+
+```bash
+docker-compose exec app php artisan make:controller nombre_controlador
+```
+
+**Crear modelo:**
+
+```bash
+docker-compose exec app php artisan make:model nombre_modelo
+```
+
+**Crear middleware:**
+
+```bash
+docker-compose exec app php artisan make:middleware nombre_middleware
+```
+
 **Generar helpers para ides:**
 
 ```bash
 # Clean bootstrap/compiled.php
 docker-compose exec app php artisan clear-compiled
+
+# Cachear configuración
+docker-compose exec app php artisan config:cache
 
 # PHPDoc generation for Laravel Facades
 docker-compose exec app php artisan ide-helper:generate
@@ -190,6 +231,12 @@ docker-compose exec app php artisan ide-helper:meta
 ```bash
 # Ver log de laravel
 docker-compose exec app tail -f -n 100 /var/www/storage/logs/laravel.log
+```
+
+**Generar JWT token:**
+
+```bash
+docker-compose exec app php artisan jwt:secret
 ```
 
 ## Solución de errores
@@ -219,3 +266,22 @@ docker-compose exec app php artisan config:clear
 docker-compose exec app php artisan view:clear
 docker-compose exec app php artisan config:cache
 ```
+
+### IDE Helper generation
+
+**Mensaje:**
+
+```bash
+ErrorException 
+
+array_merge(): Argument #1 is not an array
+
+at vendor/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php:96
+```
+
+**Solución:**
+
+```bash
+docker-compose exec app php artisan config:cache
+```
+

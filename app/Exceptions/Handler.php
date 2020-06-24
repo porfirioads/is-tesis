@@ -6,9 +6,10 @@ use App\Http\Responses\JsonResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Throwable;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class Handler extends ExceptionHandler
 {
@@ -63,18 +64,34 @@ class Handler extends ExceptionHandler
         405 - MethodNotAllowed
         500 - InternalServerError
         */
-
+        
         $class = get_class($exception);
         $diagonal_index = strrpos($class, '\\');
         $diagonal_index += $diagonal_index ? 1 : 0;
         $class = substr($class, $diagonal_index);
+        $code = 500;
 
         if ($exception instanceof HttpException) {
             $code = $exception->getStatusCode();
+        } else if ($exception instanceof JWTException) {
+            // $code = 400;
+            
+            // if ($exception instanceof TokenInvalidException){
+            //     $class = 'TokenInvalid';
+            // }else if ($exception instanceof TokenExpiredException){
+            //     $class = 'TokenExpired';
+            //     $code = 401;
+            // }else{
+            //     $class = 'TokenNotFound';
+            // }
         } else {
             $code = 500;
-            Log::error($exception->getTraceAsString());
+            $class = $class ==='Error' ? 'InternalServerError' : $class;
+            // Log::error($exception->getTraceAsString());
+            Log::error($exception->getMessage());
         }
+
+        
 
         return JsonResponse::error(['application_error' => $class], $code);
     }
