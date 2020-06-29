@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Responses\JsonResponse;
-use App\User;
-use Hash;
+use App\Models\Usuario;
+use App\Services\JwtService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Maneja las requests relacionadas con los usuarios.
@@ -15,56 +16,47 @@ use Validator;
 class UsuarioController extends Controller
 {
     /**
-     * Autentica al usuario por medio de sus credenciales.
+     * Obtiene la lista de usuarios.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|object
      */
-    public function authenticate(Request $request)
+    public function getUsers(Request $request)
     {
-        $credentials = $request->only('username', 'password');
-
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return JsonResponse::error([
-                'login_data' => 'InvalidCredentials'
-            ], 400);
-        }
-
-        return JsonResponse::ok(compact('token'));
+        $usuarios = Usuario::all();
+        return JsonResponse::ok($usuarios);
     }
 
     /**
-     * Obtiene los datos del usuario autenticado por medio de su token.
+     * Autentica al usuario.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|object
+     * @throws \ReallySimpleJWT\Exception\ValidateException
      */
-    public function getAuthenticatedUser()
+    public function login(Request $request)
     {
-        if (!$user = JWTAuth::parseToken()->authenticate()) {
-            return response()->json(['user_not_found'], 404);
+        // TODO: Validar request.
+        $username = $request['username'];
+        $password = $request['password'];
+        $user = UserService::getInstance()->getByCredentials($username, $password);
+
+        if (!$user) {
+            return JsonResponse::error(['auth' => 'Credenciales inválidas'], 401);
         }
 
-        return response()->json(compact('user'));
+        $token = JwtService::getInstance()->generate($username);
+        return JsonResponse::ok(['token' => $token]);
     }
 
     /**
-     * Registra un nuevo usuario.
+     * Prueba la validación de un token.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|object
      */
-    public function register(Request $request)
+    public function validateToken(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-
-        $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
-        ]);
-
-        $token = JWTAuth::fromUser($user);
-
-        return response()->json(compact('user', 'token'), 201);
+        return JsonResponse::ok(['result' => 'PRUEBA DE TOKEN EXISTOSA']);
     }
 }

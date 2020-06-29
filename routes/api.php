@@ -14,12 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::get('usuarios', 'UsuarioController@getUsers');
 
-Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('test', function() {
-        return 'Hola mundo';
-    });
+Route::post('login', 'UsuarioController@login');
+
+Route::group(['middleware' => ['jwt']], function () {
+    Route::post('validate_token', 'UsuarioController@validateToken');
 });

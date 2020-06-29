@@ -2,21 +2,29 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Responses\JsonResponse;
+use App\Services\JwtService;
 use Closure;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class JwtMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        JWTAuth::parseToken()->authenticate();
+        $token = $request->bearerToken();
+        $jwtService = JwtService::getInstance();
+        $success = $jwtService->validate($token);
+
+        if (!$success) {
+            return JsonResponse::error($jwtService->getErrors(), 401);
+        }
+
         return $next($request);
     }
 }

@@ -177,6 +177,12 @@ docker-compose up -d
 docker run --rm -v $(pwd):/app composer require [--dev] nombre_del_paquete
 ```
 
+**Crear seeder:**
+
+```bash
+docker-compose exec app php artisan make:seeder UserSeeder
+```
+
 **Crear migración:**
 
 ```bash
@@ -186,7 +192,11 @@ docker-compose exec app php artisan make:migration nombre_migracion
 **Aplicar migraciones:**
 
 ```bash
+# Solo migraciones.
 docker-compose exec app php artisan migrate:fresh
+
+# Migraciones y seeders.
+docker-compose exec app php artisan migrate:fresh --seed
 ```
 
 **Crear controlador:**
@@ -198,7 +208,7 @@ docker-compose exec app php artisan make:controller nombre_controlador
 **Crear modelo:**
 
 ```bash
-docker-compose exec app php artisan make:model nombre_modelo
+docker-compose exec app php artisan make:model Models/nombre_modelo
 ```
 
 **Crear middleware:**
@@ -246,6 +256,9 @@ Docker daemon socket at unix:///var/run/docker.sock: Post
 http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix 
 /var/run/docker.sock: connect: permission denied. See 'docker run --help'.
 
+**Mensaje:** ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?
+If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+
 **Solución:** ```sudo chmod 666 /var/run/docker.sock```
 ```sudo chown $USER /var/run/docker.sock```
 
@@ -256,8 +269,8 @@ http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix
 **Solución:**
 
 ```bash
-docker-compose exec app composer dump-autoload
-docker-compose exec app composer dump-autoload -o
+docker run --rm -v $(pwd):/app composer dump-autoload
+docker run --rm -v $(pwd):/app composer dump-autoload -o
 docker-compose exec app php artisan optimize:clear
 docker-compose exec app php artisan clear-compiled
 docker-compose exec app php artisan cache:clear
