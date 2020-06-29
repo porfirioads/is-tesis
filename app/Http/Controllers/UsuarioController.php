@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Responses\JsonResponse;
+use App\Http\Validators\LoginValidator;
 use App\Models\Usuario;
 use App\Services\JwtService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Maneja las requests relacionadas con los usuarios.
@@ -36,7 +35,12 @@ class UsuarioController extends Controller
      */
     public function login(Request $request)
     {
-        // TODO: Validar request.
+        $validator = new LoginValidator($request);
+
+        if (!$validator->validate()) {
+            return JsonResponse::error($validator->getErrors(), 400);
+        }
+
         $username = $request['username'];
         $password = $request['password'];
         $user = UserService::getInstance()->getByCredentials($username, $password);

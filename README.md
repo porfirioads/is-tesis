@@ -284,11 +284,9 @@ docker-compose exec app php artisan config:cache
 
 **Mensaje:**
 
-```bash
+```
 ErrorException 
-
 array_merge(): Argument #1 is not an array
-
 at vendor/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php:96
 ```
 
