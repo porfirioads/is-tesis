@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UsuarioSeeder extends Seeder
@@ -13,14 +12,24 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         DB::table('usuarios')->insert([
-            'username' => 'porfirioads',
-            'password' => Hash::make('porfirioads'),
-            'nombre' => 'Porfirio Ángel',
-            'primer_apellido' => 'Díaz',
-            'segundo_apellido' => 'Sánchez',
-            'email' => "porfirioads@gmail.com",
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            [
+                'id' => 1,
+                'username' => 'porfirioads',
+                'password' => Hash::make('porfirioads'),
+                'nombre' => 'Porfirio Ángel',
+                'primer_apellido' => 'Díaz',
+                'segundo_apellido' => 'Sánchez',
+                'email' => "porfirioads@gmail.com"
+            ],
+            [
+                'id' => 2,
+                'username' => 'planeacion',
+                'password' => Hash::make('$planeacion20'),
+                'nombre' => 'Víctor',
+                'primer_apellido' => 'Miranda',
+                'segundo_apellido' => null,
+                'email' => "splaneacionzac@gmail.com"
+            ]
         ]);
     }
 }

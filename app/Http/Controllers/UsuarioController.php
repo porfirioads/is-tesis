@@ -22,7 +22,7 @@ class UsuarioController extends Controller
      */
     public function getUsers(Request $request)
     {
-        $usuarios = Usuario::all();
+        $usuarios = UserService::getInstance()->getAll();
         return JsonResponse::ok($usuarios);
     }
 
@@ -50,7 +50,10 @@ class UsuarioController extends Controller
         }
 
         $token = JwtService::getInstance()->generate($username);
-        return JsonResponse::ok(['token' => $token]);
+        return JsonResponse::ok([
+            'token' => $token,
+            'usuario' => $user
+        ]);
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuarios extends Migration
+class CreateUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,7 +22,6 @@ class CreateUsuarios extends Migration
             $table->string('segundo_apellido')->nullable();
             $table->string('email')->unique();
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

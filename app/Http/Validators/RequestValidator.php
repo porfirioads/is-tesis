@@ -20,6 +20,7 @@ class RequestValidator
         'username.min' => 'El nombre de usuario debe tener mínimo {value} caracteres.',
         'username.max' => 'El nombre de usuario debe tener máximo {value} caracteres.',
         'username.unique' => 'El nombre de usuario ya se encuentra en uso.',
+        'password.required' => 'La contraseña es requerida.',
     ];
 
     public function __construct(Request $request)
