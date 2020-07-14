@@ -29,6 +29,15 @@ class UsuarioSeeder extends Seeder
                 'primer_apellido' => 'Miranda',
                 'segundo_apellido' => null,
                 'email' => "splaneacionzac@gmail.com"
+            ],
+            [
+                'id' => 3,
+                'username' => 'contraloria',
+                'password' => Hash::make('$contraloria20'),
+                'nombre' => 'Marco',
+                'primer_apellido' => 'Del Hoyo',
+                'segundo_apellido' => 'Lozano',
+                'email' => "contraloriazac@gmail.com"
             ]
         ]);
     }

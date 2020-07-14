@@ -21,6 +21,11 @@ class RolAdministrativoSeeder extends Seeder
                 'rol' => 'SECRETARIO',
                 'usuario_id' => 2,
                 'secretaria_id' => 1
+            ],
+            [
+                'rol' => 'JEFE_DEPARTAMENTO',
+                'usuario_id' => 3,
+                'secretaria_id' => 4
             ]
         ]);
     }
