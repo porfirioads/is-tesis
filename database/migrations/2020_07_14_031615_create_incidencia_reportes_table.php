@@ -17,7 +17,7 @@ class CreateIncidenciaReportesTable extends Migration
             $table->id();
             $table->dateTime('fecha');
             $table->string('foto', 255);
-            $table->string('comentario', 500);
+            $table->string('comentario', 500)->nullable();
             $table->foreignId('usuario_id');
             $table->foreign('usuario_id')
                 ->references('id')
