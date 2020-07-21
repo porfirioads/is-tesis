@@ -52,10 +52,10 @@ class Reporte extends Model
 
     public function seguimientos()
     {
-        return $this->hasMany(SeguimientoReporte::class);
+        return $this->hasMany(SeguimientoReporte::class)->orderByDesc('fecha');
     }
 
     public function incidencias() {
-        return $this->hasMany(IncidenciaReporte::class);
+        return $this->hasMany(IncidenciaReporte::class)->orderByDesc('fecha');
     }
 }
