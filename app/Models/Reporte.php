@@ -27,6 +27,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reporte whereLng($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reporte whereTipo($value)
  * @mixin \Eloquent
+ * @property-read int|null $incidencias_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SeguimientoReporte[] $seguimientos
+ * @property-read int|null $seguimientos_count
  */
 class Reporte extends Model
 {

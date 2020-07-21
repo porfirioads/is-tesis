@@ -3,9 +3,6 @@
 namespace App\Services;
 
 use App\Models\Reporte;
-use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Maneja acciones de base de datos de los reportes.

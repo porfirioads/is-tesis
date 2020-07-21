@@ -23,6 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereReporteId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereUsuarioId($value)
  * @mixin \Eloquent
+ * @property string $estatus
+ * @property string $mensaje
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereEstatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereMensaje($value)
  */
 class SeguimientoReporte extends Model
 {
