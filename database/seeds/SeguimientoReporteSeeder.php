@@ -16,21 +16,21 @@ class SeguimientoReporteSeeder extends Seeder
             [
                 'id' => 1,
                 'fecha' => Carbon::now(),
-                'estatus' => 'En Progreso',
+                'estatus' => 'en Progreso',
                 'mensaje' => 'Ya nos encontramos atendiendo tu reporte',
                 'reporte_id' => 1
             ],
             [
                 'id' => 2,
                 'fecha' => Carbon::now(),
-                'estatus' => 'Atendido',
+                'estatus' => 'atendido',
                 'mensaje' => 'Tu reporte fue atendido',
                 'reporte_id' => 1
             ],
             [
                 'id' => 3,
                 'fecha' => Carbon::now(),
-                'estatus' => 'Cancelado',
+                'estatus' => 'cancelado',
                 'mensaje' => 'La información enviada no es lo suficientemente clara',
                 'reporte_id' => 2
             ]

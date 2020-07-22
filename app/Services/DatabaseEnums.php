@@ -8,16 +8,16 @@ namespace App\Services;
  */
 class DatabaseEnums
 {
-    public const RE_PENDIENTE = 'Pendiente';
-    public const RE_PROGRESO = 'En progreso';
-    public const RE_ATENDIDO = 'Atendido';
-    public const RE_CANCELADO = 'Cancelado';
+    public const RE_PENDIENTE = 'pendiente';
+    public const RE_PROGRESO = 'en progreso';
+    public const RE_ATENDIDO = 'atendido';
+    public const RE_CANCELADO = 'cancelado';
 
-    public const RT_BACHES = 'Baches';
-    public const RT_ILUMINACION = 'Iluminación';
-    public const RT_BASURA = 'Basura';
-    public const RT_SEGURIDAD = 'Seguridad';
-    public const RT_JIAPAZ = 'JIAPAZ';
+    public const RT_BACHES = 'baches';
+    public const RT_ILUMINACION = 'iluminación';
+    public const RT_BASURA = 'basura';
+    public const RT_SEGURIDAD = 'seguridad';
+    public const RT_JIAPAZ = 'jiapaz';
 
     public const REPORTE_ESTATUS = [
         self::RE_PENDIENTE,

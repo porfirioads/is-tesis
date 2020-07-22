@@ -16,22 +16,22 @@ class ReporteSeeder extends Seeder
             [
                 'id' => 1,
                 'fecha' => Carbon::now(),
-                'tipo' => 'Baches',
+                'tipo' => 'baches',
                 'lat' => 22.7540992,
                 'lng' => -102.5671168,
                 'direccion' => 'Donato Guerra 803 int 1, Centro, Zacatecas, Zacatecas, 98000',
                 'incidencias' => 2,
-                'estatus' => 'Pendiente'
+                'estatus' => 'pendiente'
             ],
             [
                 'id' => 2,
                 'fecha' => Carbon::now(),
-                'tipo' => 'JIAPAZ',
+                'tipo' => 'jiapaz',
                 'lat' => 22.7540992,
                 'lng' => -102.5671168,
                 'direccion' => 'Donato Guerra 803 int 1, Centro, Zacatecas, Zacatecas, 98000',
                 'incidencias' => 1,
-                'estatus' => 'En progreso'
+                'estatus' => 'en progreso'
             ],
         ]);
     }

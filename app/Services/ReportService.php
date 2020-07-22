@@ -128,6 +128,14 @@ class ReportService extends BaseService
         }
     }
 
+    public function updateReportType($reporteId, $tipoReporte)
+    {
+        $reporte = Reporte::find($reporteId);
+        $reporte->tipo = $tipoReporte;
+        $reporte->save();
+        return $reporte;
+    }
+
     /**
      * Obtiene una instancia única de la clase.
      *

@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('usuarios', 'UsuarioController@getUsers');
+// Route::get('usuarios', 'UsuarioController@getUsers');
 
 Route::post('login', 'UsuarioController@login');
 
 Route::group(['middleware' => ['jwt']], function () {
     Route::post('validate_token', 'UsuarioController@validateToken');
 
+    // Reportes
     Route::get('reportes', 'ReporteController@getReports');
-
     Route::post('reportes', 'ReporteController@insertReport');
+    Route::put('reportes/tipo', 'ReporteController@updateReportType');
+    Route::delete('reportes', 'ReporteController@deleteReport');
+    Route::post('reportes/seguimiento', 'ReporteController@insertFeedback');
+    Route::put('reportes/seguimiento', 'ReporteController@updateFeedback');
+    Route::delete('reportes/seguimiento', 'ReporteController@deleteFeedback');
 });

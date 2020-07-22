@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Responses\JsonResponse;
 use App\Http\Validators\InsertReportValidator;
+use App\Http\Validators\UpdateTipoReporteValidator;
+use App\Services\DatabaseEnums;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 
@@ -24,6 +26,22 @@ class ReporteController extends Controller
         }
 
         $result = ReportService::getInstance()->insertReport($request);
+
+        return JsonResponse::ok($result);
+    }
+
+    public function updateReportType(Request $request)
+    {
+        $validator = new UpdateTipoReporteValidator($request);
+
+        if (!$validator->validate()) {
+            return JsonResponse::error($validator->getErrors(), 400);
+        }
+
+        $reporteId = $request->post('reporte_id', null);
+        $estatus = $request->post('estatus', null);
+        $result = ReportService::getInstance()
+            ->updateReportType($reporteId, $estatus);
 
         return JsonResponse::ok($result);
     }

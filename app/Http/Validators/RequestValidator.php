@@ -100,12 +100,19 @@ class RequestValidator
             'lng.between' => 'La longitud debe tener un valor entre -180 y 180',
             // tipo
             'tipo.required' => 'El tipo es requerido',
-            'tipo.in' => 'El tipo debe ser alguno de los siguientes: ' . implode(', ', DatabaseEnums::REPORTE_TIPO),
+            'tipo.in' => 'El tipo debe ser alguno de los siguientes: ' .
+                implode(', ', DatabaseEnums::REPORTE_TIPO),
             // direccion
             'direccion.alpha_num' => 'La dirección debe contener caracteres alfanuméricos.',
             // foto
             'foto.required' => 'La fotografía es requerida',
             'foto.image' => 'La fotografía debe ser una imagen',
+            // reporte_id
+            'reporte_id.required' => 'El id del reporte es requerido',
+            // estatus
+            'estatus.required' => 'El estatus es requerido',
+            'estatus.in' => 'El estatus debe ser alguno de los siguientes: ' .
+                implode(', ', DatabaseEnums::REPORTE_ESTATUS),
         ];
 
         $customMessages = [];
