@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $mensaje
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereEstatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereMensaje($value)
+ * @property int $notificado
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\SeguimientoReporte whereNotificado($value)
  */
 class SeguimientoReporte extends Model
 {

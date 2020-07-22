@@ -114,6 +114,9 @@ class RequestValidator
             'estatus.required' => 'El estatus es requerido',
             'estatus.in' => 'El estatus debe ser alguno de los siguientes: ' .
                 implode(', ', DatabaseEnums::REPORTE_ESTATUS),
+            // mensaje
+            'mensaje.required' => 'El mensaje es requerido',
+            'mensaje.max' => 'El mensaje debe contener máximo 500 caracteres',
         ];
 
         $customMessages = [];

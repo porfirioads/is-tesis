@@ -27,6 +27,5 @@ Route::group(['middleware' => ['jwt']], function () {
     Route::put('reportes/tipo', 'ReporteController@updateReportType');
     Route::delete('reportes', 'ReporteController@deleteReport');
     Route::post('reportes/seguimiento', 'ReporteController@insertFeedback');
-    Route::put('reportes/seguimiento', 'ReporteController@updateFeedback');
     Route::delete('reportes/seguimiento', 'ReporteController@deleteFeedback');
 });

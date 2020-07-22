@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\IncidenciaReporte;
 use App\Models\Reporte;
+use App\Models\SeguimientoReporte;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -126,6 +127,17 @@ class ReportService extends BaseService
     public function deleteReport($reporteId)
     {
         return ['query_status' => Reporte::whereId($reporteId)->delete()];
+    }
+
+    public function insertFeedback($fields)
+    {
+        $feedback = new SeguimientoReporte($fields);
+        $feedback->fecha = Carbon::now()->format('Y-m-d H:i:s');
+        $feedback->notificado = false;
+        $feedback->save();
+        Reporte::whereId($feedback->reporte_id)
+            ->update(['estatus' => $feedback->estatus]);
+        return $feedback;
     }
 
     public static function getInstance(): ReportService

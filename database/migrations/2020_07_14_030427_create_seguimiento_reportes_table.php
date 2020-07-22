@@ -19,6 +19,7 @@ class CreateSeguimientoReportesTable extends Migration
             $table->dateTime('fecha');
             $table->enum('estatus', DatabaseEnums::REPORTE_ESTATUS);
             $table->string('mensaje', 500);
+            $table->boolean('notificado');
             $table->foreignId('reporte_id');
             $table->foreign('reporte_id')
                 ->references('id')
