@@ -140,6 +140,14 @@ class ReportService extends BaseService
         return $feedback;
     }
 
+    public function deleteFeedback($seguimientoId)
+    {
+        return [
+            'query_status' => SeguimientoReporte::whereId($seguimientoId)
+                ->delete()
+        ];
+    }
+
     public static function getInstance(): ReportService
     {
         if (!ReportService::$instance) {

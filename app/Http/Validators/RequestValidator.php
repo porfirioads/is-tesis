@@ -117,6 +117,9 @@ class RequestValidator
             // mensaje
             'mensaje.required' => 'El mensaje es requerido',
             'mensaje.max' => 'El mensaje debe contener máximo 500 caracteres',
+            // seguimiento_id
+            'seguimiento_id.required' => 'El id del seguimiento es requerido',
+            'seguimiento_id.exists' => 'El id debe corresponder a un seguimiento existente',
         ];
 
         $customMessages = [];

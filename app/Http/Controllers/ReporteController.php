@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Responses\JsonResponse;
+use App\Http\Validators\DeleteFeedbackValidator;
 use App\Http\Validators\DeleteReportValidator;
 use App\Http\Validators\InsertFeedbackValidator;
 use App\Http\Validators\InsertReportValidator;
@@ -73,6 +74,20 @@ class ReporteController extends Controller
         }
 
         $result = ReportService::getInstance()->insertFeedback($request->all());
+
+        return JsonResponse::ok($result);
+    }
+
+    public function deleteFeedback(Request $request)
+    {
+        $validator = new DeleteFeedbackValidator($request);
+
+        if (!$validator->validate()) {
+            return JsonResponse::error($validator->getErrors(), 400);
+        }
+
+        $result = ReportService::getInstance()
+            ->deleteFeedback($request->post('seguimiento_id'));
 
         return JsonResponse::ok($result);
     }
