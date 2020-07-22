@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class Secretaria extends Model
 {
     protected $table = 'secretarias';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

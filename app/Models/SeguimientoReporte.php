@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
 class SeguimientoReporte extends Model
 {
     protected $table = 'seguimiento_reportes';
+    public $timestamps = false;
+
 
     /**
      * The attributes that are mass assignable.

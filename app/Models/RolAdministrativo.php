@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 class RolAdministrativo extends Model
 {
     protected $table = 'roles_administrativos';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

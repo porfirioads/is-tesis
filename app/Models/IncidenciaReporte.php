@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
 class IncidenciaReporte extends Model
 {
     protected $table = 'incidencia_reportes';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

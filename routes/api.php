@@ -21,5 +21,7 @@ Route::post('login', 'UsuarioController@login');
 Route::group(['middleware' => ['jwt']], function () {
     Route::post('validate_token', 'UsuarioController@validateToken');
 
-    Route::post('reportes', 'ReporteController@getReports');
+    Route::get('reportes', 'ReporteController@getReports');
+
+    Route::post('reportes', 'ReporteController@insertReport');
 });

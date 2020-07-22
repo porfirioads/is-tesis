@@ -2,6 +2,7 @@
 
 namespace App\Http\Validators;
 
+use App\Services\DatabaseEnums;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -15,13 +16,6 @@ class RequestValidator
     protected $request;
     protected $validations;
     protected $errors;
-    protected $messages = [
-        'username.required' => 'El nombre de usuario es requerido.',
-        'username.min' => 'El nombre de usuario debe tener mínimo {value} caracteres.',
-        'username.max' => 'El nombre de usuario debe tener máximo {value} caracteres.',
-        'username.unique' => 'El nombre de usuario ya se encuentra en uso.',
-        'password.required' => 'La contraseña es requerida.',
-    ];
 
     public function __construct(Request $request)
     {
@@ -85,6 +79,35 @@ class RequestValidator
      */
     protected function getValidationMessages()
     {
+        $messages = [
+            // username
+            'username.required' => 'El nombre de usuario es requerido.',
+            'username.min' => 'El nombre de usuario debe tener mínimo {value} caracteres.',
+            'username.max' => 'El nombre de usuario debe tener máximo {value} caracteres.',
+            'username.unique' => 'El nombre de usuario ya se encuentra en uso.',
+            // password
+            'password.required' => 'La contraseña es requerida.',
+            // fecha
+            'fecha.required' => 'La fecha es requerida.',
+            'fecha.date_format' => 'El formato de la fecha es incorrecto.',
+            // lat
+            'lat.required' => 'La latitud es requerida.',
+            'lat.numeric' => 'La latitud debe ser numérica.',
+            'lat.between' => 'La latitud debe tener un valor entre -90 y 90',
+            // lng
+            'lng.required' => 'La longitud es requerida.',
+            'lng.numeric' => 'La longitud debe ser numérica.',
+            'lng.between' => 'La longitud debe tener un valor entre -180 y 180',
+            // tipo
+            'tipo.required' => 'El tipo es requerido',
+            'tipo.in' => 'El tipo debe ser alguno de los siguientes: ' . implode(', ', DatabaseEnums::REPORTE_TIPO),
+            // direccion
+            'direccion.alpha_num' => 'La dirección debe contener caracteres alfanuméricos.',
+            // foto
+            'foto.required' => 'La fotografía es requerida',
+            'foto.image' => 'La fotografía debe ser una imagen',
+        ];
+
         $customMessages = [];
 
         foreach ($this->validations as $field => $validations) {
@@ -99,7 +122,7 @@ class RequestValidator
 
                 try {
                     $customMessages["$field.$validationType"] =
-                        $this->messages["$field.$validationType"];
+                        $messages["$field.$validationType"];
                 } catch (Exception $e) {
                     $customMessages["$field.$validationType"] = $e->getMessage();
                 }

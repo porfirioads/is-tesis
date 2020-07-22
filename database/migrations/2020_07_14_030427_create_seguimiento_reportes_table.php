@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\DatabaseEnums;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +17,7 @@ class CreateSeguimientoReportesTable extends Migration
         Schema::create('seguimiento_reportes', function (Blueprint $table) {
             $table->id();
             $table->dateTime('fecha');
-            $table->enum('estatus', [
-                'Pendiente',
-                'En progreso',
-                'Atendido',
-                'Cancelado'
-            ]);
+            $table->enum('estatus', DatabaseEnums::REPORTE_ESTATUS);
             $table->string('mensaje', 500);
             $table->foreignId('reporte_id');
             $table->foreign('reporte_id')

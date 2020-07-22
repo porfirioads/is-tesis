@@ -43,6 +43,23 @@ class JwtService extends BaseService
     }
 
     /**
+     * Descifra un JWT y devuelve su contenido.
+     *
+     * @param $token
+     * @return array|null
+     */
+    public function decrypt($token)
+    {
+        $valid = Token::validate($token, self::SECRET);
+
+        if ($valid) {
+            return Token::getPayload($token, self::SECRET);
+        }
+
+        return null;
+    }
+
+    /**
      * Genera un token.
      *
      * @param $username
