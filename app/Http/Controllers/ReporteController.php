@@ -65,6 +65,12 @@ class ReporteController extends Controller
         return JsonResponse::ok($result);
     }
 
+    public function getPendingFeedback(Request $request)
+    {
+        $result = ReportService::getInstance()->getPendingFeedback();
+        return JsonResponse::ok($result);
+    }
+
     public function insertFeedback(Request $request)
     {
         $validator = new InsertFeedbackValidator($request);

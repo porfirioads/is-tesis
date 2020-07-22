@@ -129,6 +129,14 @@ class ReportService extends BaseService
         return ['query_status' => Reporte::whereId($reporteId)->delete()];
     }
 
+    public function getPendingFeedback()
+    {
+        $pendientesQuery = SeguimientoReporte::whereNotificado(false);
+        $pendientesRows = $pendientesQuery->get();
+        $pendientesQuery->update(['notificado' => true]);
+        return $pendientesRows;
+    }
+
     public function insertFeedback($fields)
     {
         $feedback = new SeguimientoReporte($fields);
