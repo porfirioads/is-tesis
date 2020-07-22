@@ -11,15 +11,14 @@ class UpdateTipoReporteValidator extends RequestValidator
 {
     public function prepareValidations()
     {
-        \Log::debug('in:' . implode(',', DatabaseEnums::REPORTE_ESTATUS));
         $this->validations = [
             'reporte_id' => [
                 'required',
                 'exists:reportes,id'
             ],
-            'estatus' => [
+            'tipo' => [
                 'required',
-                'in:' . implode(',', DatabaseEnums::REPORTE_ESTATUS)
+                'in:' . implode(',', DatabaseEnums::REPORTE_TIPO)
             ]
         ];
     }

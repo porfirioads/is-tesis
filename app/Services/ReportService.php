@@ -12,29 +12,16 @@ use Log;
 
 /**
  * Maneja acciones de base de datos de los reportes.
- *
- * Class ReportService
- * @package App\Services
  */
 class ReportService extends BaseService
 {
     private static $instance = null;
 
-    /**
-     * Obtiene la lista de reportes.
-     *
-     * @return Reporte[]|\Illuminate\Database\Eloquent\Collection
-     */
     public function getReports()
     {
         return Reporte::with(['seguimientos', 'incidencias'])->get();
     }
 
-    /**
-     * Inserta un reporte, agrega incidencia y guarda su evidencia.
-     *
-     * @param Request $request
-     */
     public function insertReport(Request $request)
     {
         $username = JwtService::getInstance()
@@ -136,11 +123,6 @@ class ReportService extends BaseService
         return $reporte;
     }
 
-    /**
-     * Obtiene una instancia única de la clase.
-     *
-     * @return ReportService
-     */
     public static function getInstance(): ReportService
     {
         if (!ReportService::$instance) {

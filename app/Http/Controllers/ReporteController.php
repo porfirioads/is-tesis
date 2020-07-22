@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Responses\JsonResponse;
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
-use App\Services\DatabaseEnums;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 
+/**
+ * Controla las requests relacionadas a los reportes.
+ */
 class ReporteController extends Controller
 {
     public function getReports(Request $request)
@@ -39,7 +41,7 @@ class ReporteController extends Controller
         }
 
         $reporteId = $request->post('reporte_id', null);
-        $estatus = $request->post('estatus', null);
+        $estatus = $request->post('tipo', null);
         $result = ReportService::getInstance()
             ->updateReportType($reporteId, $estatus);
 
