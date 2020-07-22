@@ -123,6 +123,11 @@ class ReportService extends BaseService
         return $reporte;
     }
 
+    public function deleteReport($reporteId)
+    {
+        return ['query_status' => Reporte::whereId($reporteId)->delete()];
+    }
+
     public static function getInstance(): ReportService
     {
         if (!ReportService::$instance) {

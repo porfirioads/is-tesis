@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Responses\JsonResponse;
+use App\Http\Validators\DeleteReportValidator;
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
 use App\Services\ReportService;
@@ -44,6 +45,20 @@ class ReporteController extends Controller
         $estatus = $request->post('tipo', null);
         $result = ReportService::getInstance()
             ->updateReportType($reporteId, $estatus);
+
+        return JsonResponse::ok($result);
+    }
+
+    public function deleteReport(Request $request)
+    {
+        $validator = new DeleteReportValidator($request);
+
+        if (!$validator->validate()) {
+            return JsonResponse::error($validator->getErrors(), 400);
+        }
+
+        $reporteId = $request->post('reporte_id', null);
+        $result = ReportService::getInstance()->deleteReport($reporteId);
 
         return JsonResponse::ok($result);
     }

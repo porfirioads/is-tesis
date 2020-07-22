@@ -109,6 +109,7 @@ class RequestValidator
             'foto.image' => 'La fotografía debe ser una imagen',
             // reporte_id
             'reporte_id.required' => 'El id del reporte es requerido',
+            'reporte_id.exists' => 'El id debe corresponder a un reporte existente',
             // estatus
             'estatus.required' => 'El estatus es requerido',
             'estatus.in' => 'El estatus debe ser alguno de los siguientes: ' .
