@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use App\Services\JwtService;
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class JwtServiceTest extends TestCase
 {
     public function testJwtPayloadValid()
     {
