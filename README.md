@@ -249,6 +249,33 @@ docker-compose exec app tail -f -n 100 /var/www/storage/logs/laravel.log
 docker-compose exec app php artisan jwt:secret
 ```
 
+## Testing
+
+**Crear unit test:**
+
+```bash
+docker-compose exec app php artisan make:test UserTest --unit
+```
+
+**Crear feature test:**
+
+```bash
+docker-compose exec app php artisan make:test UserTest
+```
+
+**Correr pruebas:**
+
+```bash
+docker-compose exec app php artisan test
+```
+
+**Code coverage:**
+
+```bash
+docker-compose exec app vendor/bin/phpunit --coverage-html tests
+docker-compose exec app vendor/bin/phpunit --coverage-text
+```
+
 ## Solución de errores
 
 **Mensaje:** docker: Got permission denied while trying to connect to the 

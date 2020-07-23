@@ -135,3 +135,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# -----------------------------
+# TESTS
+# -----------------------------
+
+tests/**/*.html
+tests/**/*.css
+tests/**/*.js
+tests/**/*.svg
