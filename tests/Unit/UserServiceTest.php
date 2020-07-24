@@ -33,23 +33,14 @@ class UserServiceTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testGetUsers()
     {
-        dump(env('APP_ENV'));
-        dump(env('BCRYPT_ROUNDS'));
-        dump(env('CACHE_DRIVER'));
-        dump(env('DB_CONNECTION'));
-        dump(env('DB_DATABASE'));
-        dump(env('MAIL_MAILER'));
-        dump(env('QUEUE_CONNECTION'));
-        dump(env('SESSION_DRIVER'));
-        dump(env('TELESCOPE_ENABLED'));
-//        $env = env('APP_ENV');
-//        $this->assertEquals('prod', $env);
         $userService = UserService::getInstance();
 //        $users = $userService->getAll();
 //        $this->assertEquals('hola', $users);
-        $this->assertTrue(true);
+        $this->assertEquals('testing', env('APP_ENV'));
+//        $this->assertEquals('mysql', env('DB_CONNECTION'));
+//        $this->assertEquals('sigaz_test', env('DB_DATABASE'));
     }
 }
 

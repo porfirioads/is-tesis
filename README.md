@@ -267,7 +267,7 @@ docker-compose exec app php artisan make:test UserTest
 
 ```bash
 docker-compose exec app php artisan test
-docker-compose exec app vendor/bin/phpunit --testdox
+docker-compose exec app php artisan clear-compiled && docker-compose exec app vendor/bin/phpunit --testdox
 ```
 
 **Code coverage:**
@@ -287,8 +287,12 @@ http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix
 **Mensaje:** ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?
 If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
 
-**Solución:** ```sudo chmod 666 /var/run/docker.sock```
-```sudo chown $USER /var/run/docker.sock```
+**Solución:** 
+
+```
+sudo chmod 666 /var/run/docker.sock
+sudo chown $USER /var/run/docker.sock
+```
 
 ---
 
@@ -323,4 +327,10 @@ at vendor/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php:96
 ```bash
 docker-compose exec app php artisan config:cache
 ```
+
+## TODO's
+
+[ ] Crear automáticamente las bases de datos de producción y de pruebas.
+[ ] Asignarle automáticamente un usuario a las bases de datos anteriormente creadas.
+
 

@@ -26,10 +26,12 @@ class AutenticacionTest extends TestCase
      *
      * @return void
      */
-    public function testGetUsers()
+    public function testGetUsersApi()
     {
         $response = $this->get('api/usuarios');
-        dump($response->baseResponse->original);
+//        dump($response->baseResponse->original);
         $response->assertStatus(200);
+        $users = $response->baseResponse->original;
+        $this->assertGreaterThanOrEqual(1, count($users));
     }
 }
