@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('usuarios', 'UsuarioController@getUsers');
+Route::get('usuarios', 'UsuarioController@getUsers');
 
 Route::post('login', 'UsuarioController@login');
 
