@@ -266,8 +266,14 @@ docker-compose exec app php artisan make:test UserTest
 **Correr pruebas:**
 
 ```bash
+# Unit test con artisan
 docker-compose exec app php artisan optimize:clear && docker-compose exec app php artisan test
+
+# Unit test con phpunit
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox
+
+# Feature test con behave
+docker-compose exec bdd bash -c "cd ~/Bdd && behave"
 ```
 
 **Code coverage:**
