@@ -266,7 +266,7 @@ docker-compose exec app php artisan make:test UserTest
 **Correr pruebas:**
 
 ```bash
-docker-compose exec app php artisan test
+docker-compose exec app php artisan optimize:clear && docker-compose exec app php artisan test
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox
 ```
 
@@ -274,7 +274,7 @@ docker-compose exec app php artisan optimize:clear && docker-compose exec app ve
 
 ```bash
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-report
-docker-compose exec app vendor/bin/phpunit --coverage-text
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-text
 ```
 
 ## Solución de errores
@@ -333,4 +333,8 @@ docker-compose exec app php artisan config:cache
 [ ] Crear automáticamente las bases de datos de producción y de pruebas.
 [ ] Asignarle automáticamente un usuario a las bases de datos anteriormente creadas.
 
-
+## Commands to create
+- make test
+- run test
+- make test coverage report
+- set permission
