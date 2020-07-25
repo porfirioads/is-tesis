@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Services\JwtService;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
-class JwtServiceTest extends TestCase
+class UJwtServiceTest extends TestCase
 {
     public function testJwtPayloadValid()
     {

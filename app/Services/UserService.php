@@ -72,10 +72,6 @@ class UserService extends BaseService
      */
     private function mapUser($usuarios)
     {
-        if (!$usuarios) {
-            return null;
-        }
-
         return $usuarios->map(function ($u) {
             return [
                 'id' => $u['id'],

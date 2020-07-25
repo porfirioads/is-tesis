@@ -267,13 +267,13 @@ docker-compose exec app php artisan make:test UserTest
 
 ```bash
 docker-compose exec app php artisan test
-docker-compose exec app php artisan clear-compiled && docker-compose exec app vendor/bin/phpunit --testdox
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox
 ```
 
 **Code coverage:**
 
 ```bash
-docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-report
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-report
 docker-compose exec app vendor/bin/phpunit --coverage-text
 ```
 
