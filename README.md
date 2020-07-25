@@ -272,8 +272,8 @@ docker-compose exec app php artisan optimize:clear && docker-compose exec app ph
 # Unit test con phpunit
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox
 
-# Feature test con behave
-docker-compose exec bdd bash -c "cd ~/Bdd && behave"
+# Behave con behat
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/behat
 ```
 
 **Code coverage:**

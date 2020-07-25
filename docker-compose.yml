@@ -57,18 +57,6 @@ services:
     networks:
       - app-network
 
-  # BDD Service
-  bdd:
-    image: python:3.8
-    container_name: bdd
-    restart: on-failure
-    tty: true
-    networks:
-      - app-network
-    volumes:
-      - ./tests/Bdd:/root/Bdd
-    command:  bash -c "pip3 install -r /root/Bdd/requirements.txt && tail -f /root/Bdd/requirements.txt"
-
 #Docker Networks
 networks:
   app-network:

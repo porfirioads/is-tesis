@@ -1,0 +1,8 @@
+default:
+  suites:
+    default:
+      gherkin:
+        cache: ~
+      contexts:
+        - F01GetUsersContext
+        - F02GetReportsContext
