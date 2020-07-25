@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Services\JwtService;
 use Tests\TestCase;
 
-class UJwtServiceTest extends TestCase
+class A01_JwtServiceTest extends TestCase
 {
     public function testJwtPayloadValid()
     {

@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\Usuario;
 use App\Services\UserService;
 
-class UUserServiceTest extends DatabaseTestCase
+class A02_UserServiceTest extends DatabaseTestCase
 {
     private $userService;
 

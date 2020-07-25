@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Services\ReportService;
 
-class UReportServiceTest extends DatabaseTestCase
+class A03_ReportServiceTest extends DatabaseTestCase
 {
     private $reportService;
 

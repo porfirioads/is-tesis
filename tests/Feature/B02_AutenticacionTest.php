@@ -2,11 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-
-class FAutenticacionTest extends DatabaseTestCase
+class B02_AutenticacionTest extends DatabaseTestCase
 {
     public function testGetUsersApi()
     {
