@@ -272,8 +272,11 @@ docker-compose exec app php artisan optimize:clear && docker-compose exec app ph
 # Unit test con phpunit
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox
 
-# Behave con behat
-docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/behat
+# Unit test PHPUnit
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox --testsuite=Unit
+
+# Feature test PHPUnit
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox --testsuite=Feature
 ```
 
 **Code coverage:**

@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
-class B02_AutenticacionTest extends DatabaseTestCase
+use Tests\DatabaseTestCase;
+
+class F02_AutenticacionTest extends DatabaseTestCase
 {
     public function testGetUsersApi()
     {

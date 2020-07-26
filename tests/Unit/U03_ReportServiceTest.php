@@ -1,10 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Services\ReportService;
+use Tests\DatabaseTestCase;
 
-class A03_ReportServiceTest extends DatabaseTestCase
+class U03_ReportServiceTest extends DatabaseTestCase
 {
     private $reportService;
 

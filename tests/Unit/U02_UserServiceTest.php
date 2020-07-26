@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Models\Usuario;
 use App\Services\UserService;
+use Tests\DatabaseTestCase;
 
-class A02_UserServiceTest extends DatabaseTestCase
+class U02_UserServiceTest extends DatabaseTestCase
 {
     private $userService;
 
@@ -30,6 +31,7 @@ class A02_UserServiceTest extends DatabaseTestCase
 
     public function testGetByCredentials()
     {
+        $this->seed();
         $user = $this->userService->getByCredentials('porfirioads', 'porfirioads');
         $this->assertNotNull($user);
     }
