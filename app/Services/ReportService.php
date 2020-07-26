@@ -23,6 +23,14 @@ class ReportService extends BaseService
         return Reporte::with(['seguimientos', 'incidencias'])->get();
     }
 
+    /**
+     * Inserta reporte en la base de datos o actualiza sus incidencias en caso
+     * de que ya exista.
+     *
+     * @param Request $request Petición http que se ejecutó en el controlador.
+     * @return array Arreglo que contiene información acerca del reporte e incidencia
+     *               insertados.
+     */
     public function insertReport(Request $request)
     {
         $username = JwtService::getInstance()
@@ -39,7 +47,7 @@ class ReportService extends BaseService
         // Busca si existe un reporte cercano.
         foreach ($reportes as $reporte) {
             $distance = $this->distance($reporte->lat, $reporte->lng,
-                $fields['lat'], $fields['lng'], 'M');
+                $fields['lat'], $fields['lng']);
 
             if ($distance <= 15) {
                 $reporteExistente = $reporte;
@@ -92,7 +100,7 @@ class ReportService extends BaseService
      *                     M - metros).
      * @return float|int
      */
-    private function distance($lat1, $lon1, $lat2, $lon2, $unit)
+    private function distance($lat1, $lon1, $lat2, $lon2)
     {
         if (($lat1 == $lat2) && ($lon1 == $lon2)) {
             return 0;
@@ -104,15 +112,8 @@ class ReportService extends BaseService
             $dist = acos($dist);
             $dist = rad2deg($dist);
             $miles = $dist * 60 * 1.1515;
-            $unit = strtoupper($unit);
 
-            if ($unit == "K") {
-                return ($miles * 1.609344);
-            } else if ($unit == "M") {
-                return ($miles * 1.609344 * 1000);
-            } else {
-                return $miles;
-            }
+            return $miles * 1.609344 * 1000; // Meters
         }
     }
 

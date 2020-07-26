@@ -44,9 +44,9 @@ class ReporteController extends Controller
         }
 
         $reporteId = $request->post('reporte_id', null);
-        $estatus = $request->post('tipo', null);
+        $tipo = $request->post('tipo', null);
         $result = ReportService::getInstance()
-            ->updateReportType($reporteId, $estatus);
+            ->updateReportType($reporteId, $tipo);
 
         return JsonResponse::ok($result);
     }

@@ -266,12 +266,6 @@ docker-compose exec app php artisan make:test UserTest
 **Correr pruebas:**
 
 ```bash
-# Unit test con artisan
-docker-compose exec app php artisan optimize:clear && docker-compose exec app php artisan test
-
-# Unit test con phpunit
-docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox
-
 # Unit test PHPUnit
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --testdox --testsuite=Unit
 
@@ -282,8 +276,13 @@ docker-compose exec app php artisan optimize:clear && docker-compose exec app ve
 **Code coverage:**
 
 ```bash
-docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-report
-docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-text
+# Unit
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-text --testsuite=Unit
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-unit --testsuite=Unit
+
+# Feature
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-text --testsuite=Feature
+docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-feature --testsuite=Feature
 ```
 
 ## Solución de errores

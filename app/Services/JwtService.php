@@ -73,7 +73,7 @@ class JwtService extends BaseService
         $payload = [
             'iat' => $timestamp,
             'uid' => $timestamp,
-            'exp' => $timestamp + 3600,
+            // 'exp' => $timestamp + 3600,
             'iss' => 'localhost',
             'username' => $username
         ];

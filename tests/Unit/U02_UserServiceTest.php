@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use App\Models\Usuario;
 use App\Services\UserService;
-use Tests\DatabaseTestCase;
+use Tests\DatabaseEachTestCase;
 
-class U02_UserServiceTest extends DatabaseTestCase
+class U02_UserServiceTest extends DatabaseEachTestCase
 {
     private $userService;
 
@@ -24,14 +24,14 @@ class U02_UserServiceTest extends DatabaseTestCase
 
     public function testGetZeroUsers()
     {
-        Usuario::where('id', '>=', 1)->delete();
+        Usuario::where('id', '>', 0)->delete();
         $users = $this->userService->getAll();
         $this->assertEquals(0, count($users));
     }
 
     public function testGetByCredentials()
     {
-        $this->seed();
+//        $this->seed();
         $user = $this->userService->getByCredentials('porfirioads', 'porfirioads');
         $this->assertNotNull($user);
     }
