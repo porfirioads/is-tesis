@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Reporte;
+use App\Models\SeguimientoReporte;
 use App\Models\Usuario;
 use App\Services\DatabaseEnums;
 use App\Services\JwtService;
@@ -83,5 +84,46 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
         $updatedReport = $this->reportService->updateReportType($testReport->id,
             DatabaseEnums::RT_BASURA);
         $this->assertEquals(DatabaseEnums::RT_BASURA, $updatedReport->tipo);
+    }
+
+    public function testDeleteReport()
+    {
+        $reportCount = Reporte::count();
+        $testReport = Reporte::first();
+        $updatedReport = $this->reportService->deleteReport($testReport->id);
+        $newReportCount = Reporte::count();
+        $this->assertEquals($reportCount - 1, $newReportCount);
+    }
+
+    public function testGetPendingFeedback()
+    {
+        $feedbacks = $this->reportService->getPendingFeedback();
+        $this->assertGreaterThanOrEqual(0, count($feedbacks));
+        $feedbacks = $this->reportService->getPendingFeedback();
+        $this->assertCount(0, $feedbacks);
+    }
+
+    public function testInsertFeedback()
+    {
+        $testReport = Reporte::first();
+        $fields = [
+            'reporte_id' => $testReport->id,
+            'estatus' => DatabaseEnums::RE_PROGRESO,
+            'mensaje' => 'Estamos trabajando'
+        ];
+        $this->reportService->getPendingFeedback();
+        $this->reportService->insertFeedback($fields);
+        $newFeedbacks = $this->reportService->getPendingFeedback();
+        $this->assertEquals(1, count($newFeedbacks));
+    }
+
+    public function testDeleteFeedback()
+    {
+        $testFeedback = SeguimientoReporte::first();
+        $result = $this->reportService->deleteFeedback($testFeedback->id);
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('query_status', $result);
+        $this->assertIsNumeric($result['query_status']);
+        $this->assertEquals(1, $result['query_status']);
     }
 }

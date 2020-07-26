@@ -36,8 +36,13 @@ class U01_JwtServiceTest extends TestCase
 
     public function testJwtInvalid()
     {
-        $validationResult = JwtService::getInstance()->validate('holamundo');
+        $jwtService = JwtService::getInstance();
+        $validationResult = $jwtService->validate('holamundo');
+        $this->assertIsBool($validationResult);
         $this->assertFalse($validationResult);
+        $errors = $jwtService->getErrors();
+        $this->assertIsArray($errors);
+        $this->assertGreaterThan(0, count($errors));
     }
 
     public function testJwtNoToken()
