@@ -9,7 +9,7 @@ class BaseService
 {
     private $errors;
 
-    protected function __construct()
+    public function __construct()
     {
         $this->resetErrors();
     }

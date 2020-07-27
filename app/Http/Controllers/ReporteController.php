@@ -16,9 +16,21 @@ use Illuminate\Http\Request;
  */
 class ReporteController extends Controller
 {
+    private $reportService;
+
+    public function __construct($reportService = null)
+    {
+        if (!$reportService) {
+            $reportService = ReportService::getInstance();
+        }
+
+        $this->reportService = $reportService;
+    }
+
     public function getReports(Request $request)
     {
-        $reports = ReportService::getInstance()->getReports();
+//        $reportService = ReportService::getInstance();
+        $reports = $this->reportService->getReports();
         return JsonResponse::ok($reports);
     }
 
