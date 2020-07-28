@@ -6,6 +6,7 @@ use App\Models\IncidenciaReporte;
 use App\Models\Reporte;
 use App\Models\SeguimientoReporte;
 use App\Models\Usuario;
+use App\ObjectFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -72,8 +73,10 @@ class ReportService extends BaseService
 
         $reporte->save();
 
-        # Guarda datos de la incidencia.
-        $fotoPath = Storage::disk('public')->put('reportes', $request->file('foto'));
+        // Guarda datos de la incidencia.
+        // $fotoPath = Storage::disk('public')->put('reportes', $request->file('foto'));
+        $file = ObjectFactory::getFile($request, 'foto');
+        $fotoPath = Storage::disk('public')->put('reportes', $file);
         $incidencia->foto = $fotoPath;
         $incidencia->comentario = $request->post('comentario', null);
         $incidencia->reporte_id = $reporte->id;

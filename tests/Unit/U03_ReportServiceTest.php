@@ -26,7 +26,9 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     public function setUp(): void
     {
         parent::setUp();
+        ObjectFactory::$useMocks = false;
         $this->reportService = ObjectFactory::getReportService();
+        ObjectFactory::$useMocks = true;
     }
 
     public function testGetReports()
@@ -50,6 +52,7 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     {
         $testUser = Usuario::first();
         $token = JwtService::getInstance()->generate($testUser->username);
+
 
         $request = new Request([
             'lat' => 22.6482078,
