@@ -8,6 +8,7 @@ use App\Http\Validators\DeleteReportValidator;
 use App\Http\Validators\InsertFeedbackValidator;
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
+use App\ObjectFactory;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 
@@ -18,18 +19,13 @@ class ReporteController extends Controller
 {
     private $reportService;
 
-    public function __construct($reportService = null)
+    public function __construct()
     {
-        if (!$reportService) {
-            $reportService = ReportService::getInstance();
-        }
-
-        $this->reportService = $reportService;
+        $this->reportService = ObjectFactory::getReportService();
     }
 
     public function getReports(Request $request)
     {
-//        $reportService = ReportService::getInstance();
         $reports = $this->reportService->getReports();
         return JsonResponse::ok($reports);
     }
@@ -42,7 +38,7 @@ class ReporteController extends Controller
             return JsonResponse::error($validator->getErrors(), 400);
         }
 
-        $result = ReportService::getInstance()->insertReport($request);
+        $result = $this->reportService->insertReport($request);
 
         return JsonResponse::ok($result);
     }
@@ -57,8 +53,7 @@ class ReporteController extends Controller
 
         $reporteId = $request->post('reporte_id', null);
         $tipo = $request->post('tipo', null);
-        $result = ReportService::getInstance()
-            ->updateReportType($reporteId, $tipo);
+        $result = $this->reportService->updateReportType($reporteId, $tipo);
 
         return JsonResponse::ok($result);
     }
@@ -72,14 +67,14 @@ class ReporteController extends Controller
         }
 
         $reporteId = $request->post('reporte_id', null);
-        $result = ReportService::getInstance()->deleteReport($reporteId);
+        $result = $this->reportService->deleteReport($reporteId);
 
         return JsonResponse::ok($result);
     }
 
     public function getPendingFeedback(Request $request)
     {
-        $result = ReportService::getInstance()->getPendingFeedback();
+        $result = $this->reportService->getPendingFeedback();
         return JsonResponse::ok($result);
     }
 
@@ -91,7 +86,7 @@ class ReporteController extends Controller
             return JsonResponse::error($validator->getErrors(), 400);
         }
 
-        $result = ReportService::getInstance()->insertFeedback($request->all());
+        $result = $this->reportService->insertFeedback($request->all());
 
         return JsonResponse::ok($result);
     }
@@ -104,8 +99,7 @@ class ReporteController extends Controller
             return JsonResponse::error($validator->getErrors(), 400);
         }
 
-        $result = ReportService::getInstance()
-            ->deleteFeedback($request->post('seguimiento_id'));
+        $result = $this->reportService->deleteFeedback($request->post('seguimiento_id'));
 
         return JsonResponse::ok($result);
     }

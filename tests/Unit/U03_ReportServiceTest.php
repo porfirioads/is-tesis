@@ -5,13 +5,14 @@ namespace Tests\Unit;
 use App\Models\Reporte;
 use App\Models\SeguimientoReporte;
 use App\Models\Usuario;
+use App\ObjectFactory;
 use App\Services\DatabaseEnums;
 use App\Services\JwtService;
-use App\Services\ReportService;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Tests\DatabaseEachTestCase;
 
 class U03_ReportServiceTest extends DatabaseEachTestCase
@@ -25,7 +26,7 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->reportService = ReportService::getInstance();
+        $this->reportService = ObjectFactory::getReportService();
     }
 
     public function testGetReports()
@@ -52,7 +53,8 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
 
         $request = new Request([
             'lat' => 22.6482078,
-            'lng' => -102.9781093
+            'lng' => -102.9781093,
+            'foto' => UploadedFile::fake()->image('hola.ong')
         ]);
 
         $request->headers->set('Authorization', "Bearer $token");
@@ -67,7 +69,7 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
 
         $request = new Request([
             'lat' => 22.6482078,
-            'lng' => -102.9781093
+            'lng' => -102.9781093,
         ]);
 
         $request->headers->set('Authorization', "Bearer $token");

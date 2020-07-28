@@ -16,8 +16,6 @@ use Log;
  */
 class ReportService extends BaseService
 {
-    private static $instance = null;
-
     public function getReports()
     {
         return Reporte::with(['seguimientos', 'incidencias'])->get();
@@ -155,14 +153,5 @@ class ReportService extends BaseService
             'query_status' => SeguimientoReporte::whereId($seguimientoId)
                 ->delete()
         ];
-    }
-
-    public static function getInstance(): ReportService
-    {
-        if (!ReportService::$instance) {
-            ReportService::$instance = new ReportService();
-        }
-
-        return ReportService::$instance;
     }
 }

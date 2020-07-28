@@ -336,6 +336,20 @@ at vendor/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php:96
 docker-compose exec app php artisan config:cache
 ```
 
+### Clases no encontradas al momento de ejecutar tests.
+
+**Mensaje:**
+
+```
+Illuminate\Contracts\Container\BindingResolutionException: Target class [ReporteSeeder] does not exist.
+```
+
+**Solución:**
+
+```
+docker run --rm -v $(pwd):/app composer dump-autoload
+```
+
 ## TODO's
 
 [ ] Crear automáticamente las bases de datos de producción y de pruebas.
