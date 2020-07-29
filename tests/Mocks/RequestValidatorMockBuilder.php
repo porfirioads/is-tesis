@@ -19,6 +19,22 @@ class RequestValidatorMockBuilder
         return new RequestValidatorMockBuilder();
     }
 
+    public static function successValidation()
+    {
+        return RequestValidatorMockBuilder::create()
+            ->mockValidateTrue()
+            ->mockGetErrorsEmpty()
+            ->getResult();
+    }
+
+    public static function errorValidation()
+    {
+        return RequestValidatorMockBuilder::create()
+            ->mockValidateFalse()
+            ->mockGetErrors()
+            ->getResult();
+    }
+
     protected function mockFunction($functionName, $returnValue)
     {
         $this->mock->allows([$functionName => $returnValue]);

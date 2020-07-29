@@ -44,7 +44,7 @@ class ReporteController extends Controller
 
     public function updateReportType(Request $request)
     {
-        $validator = new UpdateTipoReporteValidator($request);
+        $validator = ObjectFactory::getUpdateReportTypeValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);

@@ -118,6 +118,22 @@ class ReportServiceMockBuilder
         return $this;
     }
 
+    public function mockUpdateReportType()
+    {
+        $this->mockFunction('updateReportType', [
+            "id" => 1,
+            "fecha" => "2020-07-28 17:32:14",
+            "tipo" => "iluminación",
+            "lat" => 22.7540992,
+            "lng" => -102.5671168,
+            "direccion" => "Donato Guerra 803 int 1, Centro, Zacatecas, Zacatecas, 98000",
+            "incidencias" => 2,
+            "estatus" => "pendiente"
+        ]);
+
+        return $this;
+    }
+
     public function getResult()
     {
         return $this->mock;

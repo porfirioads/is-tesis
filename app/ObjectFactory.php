@@ -3,16 +3,20 @@
 namespace App;
 
 use App\Http\Validators\InsertReportValidator;
+use App\Http\Validators\UpdateTipoReporteValidator;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-use Mockery;
 
+/**
+ * Factory para la instanciación de objetos.
+ */
 class ObjectFactory
 {
     public static $useMocks = false;
     public static $reportServiceMock = null;
     public static $insertReportValidatorMock = null;
+    public static $updateReportTypeValidator = null;
 
     public static function getReportService()
     {
@@ -38,6 +42,15 @@ class ObjectFactory
             return ObjectFactory::$insertReportValidatorMock;
         } else {
             return new InsertReportValidator($request);
+        }
+    }
+
+    public static function getUpdateReportTypeValidator($request)
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$updateReportTypeValidator;
+        } else {
+            return new UpdateTipoReporteValidator($request);
         }
     }
 }

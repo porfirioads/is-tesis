@@ -60,10 +60,7 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
             ->mockInsertReport()
             ->getResult();
 
-        ObjectFactory::$insertReportValidatorMock = RequestValidatorMockBuilder::create()
-            ->mockValidateTrue()
-            ->mockGetErrorsEmpty()
-            ->getResult();
+        ObjectFactory::$insertReportValidatorMock = RequestValidatorMockBuilder::successValidation();
 
         $controller = new ReporteController();
         $request = new Request();
@@ -80,16 +77,57 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
             ->getResult();
 
-        ObjectFactory::$insertReportValidatorMock = RequestValidatorMockBuilder::create()
-            ->mockValidateFalse()
-            ->mockGetErrors()
-            ->getResult();
+        ObjectFactory::$insertReportValidatorMock = RequestValidatorMockBuilder::errorValidation();
 
         $controller = new ReporteController();
         $request = new Request();
         $response = $controller->insertReport($request);
         $this->assertEquals(400, $response->status());
         $data = $response->getData();
+        $this->assertErrorValidation($data);
+    }
+
+    public function testUpdateReportType()
+    {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockUpdateReportType()
+            ->getResult();
+
+        ObjectFactory::$updateReportTypeValidator = RequestValidatorMockBuilder::successValidation();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->updateReportType($request);
+        $this->assertEquals(200, $response->status());
+        $data = $response->getData();
+        $this->assertObjectHasAttribute('id', $data);
+        $this->assertObjectHasAttribute('fecha', $data);
+        $this->assertObjectHasAttribute('tipo', $data);
+        $this->assertObjectHasAttribute('lat', $data);
+        $this->assertObjectHasAttribute('lng', $data);
+        $this->assertObjectHasAttribute('direccion', $data);
+        $this->assertObjectHasAttribute('incidencias', $data);
+        $this->assertObjectHasAttribute('estatus', $data);
+    }
+
+    public function testUpdateReportTypeInvalid()
+    {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockUpdateReportType()
+            ->getResult();
+
+        ObjectFactory::$updateReportTypeValidator = RequestValidatorMockBuilder::errorValidation();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->updateReportType($request);
+        $this->assertEquals(400, $response->status());
+        $data = $response->getData();
+        $this->assertErrorValidation($data);
+    }
+
+    private function assertErrorValidation($data)
+    {
         $this->assertObjectHasAttribute('errors', $data);
         $this->assertObjectHasAttribute('testing', $data->errors);
         $this->assertIsArray($data->errors->testing);
