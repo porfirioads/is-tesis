@@ -8,15 +8,6 @@ use Mockery;
 class ReportServiceMockBuilder
 {
     private $mock;
-    private $methods = [
-        'getReports',
-        'insertReport',
-        'updateReportType',
-        'deleteReport',
-        'getPendingFeedback',
-        'insertFeedback',
-        'deleteFeedback'
-    ];
 
     private function __construct()
     {
@@ -25,13 +16,7 @@ class ReportServiceMockBuilder
 
     public static function create()
     {
-        $mockBuilder = new ReportServiceMockBuilder();
-
-        foreach ($mockBuilder->methods as $method) {
-            $mockBuilder->mockFunction($method, null);
-        }
-
-        return $mockBuilder;
+        return new ReportServiceMockBuilder();
     }
 
     protected function mockFunction($functionName, $returnValue)

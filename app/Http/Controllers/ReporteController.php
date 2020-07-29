@@ -32,7 +32,6 @@ class ReporteController extends Controller
     public function insertReport(Request $request)
     {
         $validator = ObjectFactory::getInsertReportValidator($request);
-//        $validator = new InsertReportValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);

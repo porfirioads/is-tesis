@@ -31,6 +31,12 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
         ObjectFactory::$useMocks = true;
     }
 
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        ObjectFactory::$useMocks = false;
+    }
+
     public function testGetReports()
     {
         $reportes = $this->reportService->getReports();

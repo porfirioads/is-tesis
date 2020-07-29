@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\Request;
 use Tests\DatabaseEachTestCase;
-use Tests\Mocks\InsertReportValidatorMockBuilder;
+use Tests\Mocks\RequestValidatorMockBuilder;
 use Tests\Mocks\ReportServiceMockBuilder;
 
 class U04_ReporteControllerTest extends DatabaseEachTestCase
@@ -60,25 +60,19 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
             ->mockInsertReport()
             ->getResult();
 
-        ObjectFactory::$insertReportValidatorMock = InsertReportValidatorMockBuilder::create()
+        ObjectFactory::$insertReportValidatorMock = RequestValidatorMockBuilder::create()
             ->mockValidateTrue()
-            ->mockgetErrorsEmpty()
+            ->mockGetErrorsEmpty()
             ->getResult();
 
         $controller = new ReporteController();
         $request = new Request();
         $response = $controller->insertReport($request);
-
-        dump($response);
-
         $this->assertEquals(200, $response->status());
-        $this->assertIsArray($response->getData());
-
-        foreach ($response->getData() as $report) {
-            $this->assertObjectHasAttribute('reporte_id', $report);
-            $this->assertObjectHasAttribute('incidencia_id', $report);
-            $this->assertObjectHasAttribute('reincidencia', $report);
-        }
+        $data = $response->getData();
+        $this->assertObjectHasAttribute('reporte_id', $data);
+        $this->assertObjectHasAttribute('incidencia_id', $data);
+        $this->assertObjectHasAttribute('reincidencia', $data);
     }
 
     public function testInsertReportInvalid()
@@ -86,16 +80,19 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
             ->getResult();
 
+        ObjectFactory::$insertReportValidatorMock = RequestValidatorMockBuilder::create()
+            ->mockValidateFalse()
+            ->mockGetErrors()
+            ->getResult();
+
         $controller = new ReporteController();
         $request = new Request();
         $response = $controller->insertReport($request);
-        $this->assertEquals(200, $response->status());
-        $this->assertIsArray($response->getData());
-
-        foreach ($response->getData() as $report) {
-            $this->assertObjectHasAttribute('reporte_id', $report);
-            $this->assertObjectHasAttribute('incidencia_id', $report);
-            $this->assertObjectHasAttribute('reincidencia', $report);
-        }
+        $this->assertEquals(400, $response->status());
+        $data = $response->getData();
+        $this->assertObjectHasAttribute('errors', $data);
+        $this->assertObjectHasAttribute('testing', $data->errors);
+        $this->assertIsArray($data->errors->testing);
+        $this->assertCount(1, $data->errors->testing);
     }
 }

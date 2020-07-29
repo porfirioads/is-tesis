@@ -2,31 +2,21 @@
 
 namespace Tests\Mocks;
 
-use App\Http\Validators\InsertReportValidator;
+use App\Http\Validators\RequestValidator;
 use Mockery;
 
-class InsertReportValidatorMockBuilder
+class RequestValidatorMockBuilder
 {
     private $mock;
-    private $methods = [
-        'validate',
-        'getErrors'
-    ];
 
     private function __construct()
     {
-        $this->mock = Mockery::mock(InsertReportValidator::class);
+        $this->mock = Mockery::mock(RequestValidator::class);
     }
 
     public static function create()
     {
-        $mockBuilder = new InsertReportValidatorMockBuilder();
-
-        foreach ($mockBuilder->methods as $method) {
-            $mockBuilder->mockFunction($method, null);
-        }
-
-        return $mockBuilder;
+        return new RequestValidatorMockBuilder();
     }
 
     protected function mockFunction($functionName, $returnValue)
@@ -41,9 +31,21 @@ class InsertReportValidatorMockBuilder
         return $this;
     }
 
-    public function mockgetErrorsEmpty()
+    public function mockValidateFalse()
+    {
+        $this->mockFunction('validate', false);
+        return $this;
+    }
+
+    public function mockGetErrorsEmpty()
     {
         $this->mockFunction('getErrors', []);
+        return $this;
+    }
+
+    public function mockGetErrors()
+    {
+        $this->mockFunction('getErrors', ['testing' => ['Error de prueba']]);
         return $this;
     }
 
