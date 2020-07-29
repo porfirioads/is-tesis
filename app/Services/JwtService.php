@@ -11,12 +11,6 @@ use ReallySimpleJWT\Token;
 class JwtService extends BaseService
 {
     private const SECRET = '$This.is.the.53CR3T.TESIS.TDD$';
-    private static $instance = null;
-
-    protected function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Realiza la validación de un token.
@@ -79,18 +73,5 @@ class JwtService extends BaseService
         ];
 
         return Token::customPayload($payload, self::SECRET);
-    }
-
-    /**
-     * Obtiene una instancia única de la clase.
-     *
-     * @return JwtService
-     */
-    public static function getInstance(): JwtService
-    {
-        if (!JwtService::$instance) {
-            JwtService::$instance = new JwtService();
-        }
-        return JwtService::$instance;
     }
 }

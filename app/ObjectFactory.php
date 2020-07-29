@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
+use App\Services\JwtService;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -16,7 +17,8 @@ class ObjectFactory
     public static $useMocks = false;
     public static $reportServiceMock = null;
     public static $insertReportValidatorMock = null;
-    public static $updateReportTypeValidator = null;
+    public static $updateReportTypeValidatorMock = null;
+    public static $jwtServiceMock = null;
 
     public static function getReportService()
     {
@@ -45,12 +47,21 @@ class ObjectFactory
         }
     }
 
-    public static function getUpdateReportTypeValidator($request)
+    public static function getUpdateReportTypeValidatorMock($request)
     {
         if (ObjectFactory::$useMocks) {
-            return ObjectFactory::$updateReportTypeValidator;
+            return ObjectFactory::$updateReportTypeValidatorMock;
         } else {
             return new UpdateTipoReporteValidator($request);
+        }
+    }
+
+    public static function getJwtService()
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$jwtServiceMock;
+        } else {
+            return new JwtService();
         }
     }
 }

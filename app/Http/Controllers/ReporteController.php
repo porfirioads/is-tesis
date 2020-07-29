@@ -6,8 +6,6 @@ use App\Http\Responses\JsonResponse;
 use App\Http\Validators\DeleteFeedbackValidator;
 use App\Http\Validators\DeleteReportValidator;
 use App\Http\Validators\InsertFeedbackValidator;
-use App\Http\Validators\InsertReportValidator;
-use App\Http\Validators\UpdateTipoReporteValidator;
 use App\ObjectFactory;
 use Illuminate\Http\Request;
 
@@ -44,7 +42,7 @@ class ReporteController extends Controller
 
     public function updateReportType(Request $request)
     {
-        $validator = ObjectFactory::getUpdateReportTypeValidator($request);
+        $validator = ObjectFactory::getUpdateReportTypeValidatorMock($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);

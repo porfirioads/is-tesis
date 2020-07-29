@@ -93,7 +93,7 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
             ->mockUpdateReportType()
             ->getResult();
 
-        ObjectFactory::$updateReportTypeValidator = RequestValidatorMockBuilder::successValidation();
+        ObjectFactory::$updateReportTypeValidatorMock = RequestValidatorMockBuilder::successValidation();
 
         $controller = new ReporteController();
         $request = new Request();
@@ -116,7 +116,7 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
             ->mockUpdateReportType()
             ->getResult();
 
-        ObjectFactory::$updateReportTypeValidator = RequestValidatorMockBuilder::errorValidation();
+        ObjectFactory::$updateReportTypeValidatorMock = RequestValidatorMockBuilder::errorValidation();
 
         $controller = new ReporteController();
         $request = new Request();

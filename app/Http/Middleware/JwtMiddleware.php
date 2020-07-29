@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Responses\JsonResponse;
+use App\ObjectFactory;
 use App\Services\JwtService;
 use Closure;
 
@@ -18,7 +19,7 @@ class JwtMiddleware
     public function handle($request, Closure $next)
     {
         $token = $request->bearerToken();
-        $jwtService = JwtService::getInstance();
+        $jwtService = ObjectFactory::getJwtService();
         $success = $jwtService->validate($token);
 
         if (!$success) {
