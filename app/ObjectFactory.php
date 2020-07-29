@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Validators\InsertReportValidator;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -11,6 +12,7 @@ class ObjectFactory
 {
     public static $useMocks = false;
     public static $reportServiceMock = null;
+    public static $insertReportValidatorMock = null;
 
     public static function getReportService()
     {
@@ -27,6 +29,15 @@ class ObjectFactory
             return UploadedFile::fake()->image("$key.png");
         } else {
             return $request->file($key);
+        }
+    }
+
+    public static function getInsertReportValidator($request)
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$insertReportValidatorMock;
+        } else {
+            return new InsertReportValidator($request);
         }
     }
 }

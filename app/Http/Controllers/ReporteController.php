@@ -9,7 +9,6 @@ use App\Http\Validators\InsertFeedbackValidator;
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
 use App\ObjectFactory;
-use App\Services\ReportService;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +31,8 @@ class ReporteController extends Controller
 
     public function insertReport(Request $request)
     {
-        $validator = new InsertReportValidator($request);
+        $validator = ObjectFactory::getInsertReportValidator($request);
+//        $validator = new InsertReportValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);

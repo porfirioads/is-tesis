@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\Request;
 use Tests\DatabaseEachTestCase;
+use Tests\Mocks\InsertReportValidatorMockBuilder;
 use Tests\Mocks\ReportServiceMockBuilder;
 
 class U04_ReporteControllerTest extends DatabaseEachTestCase
@@ -39,7 +40,6 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         $request = new Request();
         $response = $controller->getReports($request);
         $this->assertEquals(200, $response->status());
-//        $this->assertIsArray($response->getData());
 
         foreach ($response->getData() as $report) {
             $this->assertObjectHasAttribute('id', $report);
@@ -60,11 +60,17 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
             ->mockInsertReport()
             ->getResult();
 
+        ObjectFactory::$insertReportValidatorMock = InsertReportValidatorMockBuilder::create()
+            ->mockValidateTrue()
+            ->mockgetErrorsEmpty()
+            ->getResult();
+
         $controller = new ReporteController();
         $request = new Request();
         $response = $controller->insertReport($request);
 
         dump($response);
+
         $this->assertEquals(200, $response->status());
         $this->assertIsArray($response->getData());
 
