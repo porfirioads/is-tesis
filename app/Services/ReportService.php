@@ -32,7 +32,7 @@ class ReportService extends BaseService
      */
     public function insertReport(Request $request)
     {
-        $username = JwtService::getInstance()
+        $username = ObjectFactory::getJwtService()
             ->decrypt($request->bearerToken())['username'];
         $user = Usuario::whereUsername($username)->first();
 

@@ -2,17 +2,33 @@
 
 namespace Tests\Unit;
 
+use App\ObjectFactory;
 use App\Services\JwtService;
 use Tests\TestCase;
 
 class U01_JwtServiceTest extends TestCase
 {
+    private $jwtService;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        ObjectFactory::$useMocks = false;
+        $this->jwtService = ObjectFactory::getJwtService();
+        ObjectFactory::$useMocks = true;
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        ObjectFactory::$useMocks = false;
+    }
+
     public function testJwtPayloadValid()
     {
         $username = 'marco';
-        $jwtService = JwtService::getInstance();
-        $token = $jwtService->generate($username);
-        $payload = $jwtService->decrypt($token);
+        $token = $this->jwtService->generate($username);
+        $payload = $this->jwtService->decrypt($token);
         $this->assertIsArray($payload);
         $this->assertArrayHasKey('username', $payload);
         $this->assertEquals($payload['username'], $username);
@@ -20,34 +36,32 @@ class U01_JwtServiceTest extends TestCase
 
     public function testJwtPayloadInvalid()
     {
-        $payload = JwtService::getInstance()->decrypt('holamundo');
+        $payload = $this->jwtService->decrypt('holamundo');
         $this->assertNull($payload);
     }
 
     public function testJwtValid()
     {
         $username = 'marco';
-        $jwtService = JwtService::getInstance();
-        $token = $jwtService->generate($username);
-        $validationResult = $jwtService->validate($token);
+        $token = $this->jwtService->generate($username);
+        $validationResult = $this->jwtService->validate($token);
         $this->assertIsBool($validationResult);
         $this->assertTrue($validationResult);
     }
 
     public function testJwtInvalid()
     {
-        $jwtService = JwtService::getInstance();
-        $validationResult = $jwtService->validate('holamundo');
+        $validationResult = $this->jwtService->validate('holamundo');
         $this->assertIsBool($validationResult);
         $this->assertFalse($validationResult);
-        $errors = $jwtService->getErrors();
+        $errors = $this->jwtService->getErrors();
         $this->assertIsArray($errors);
         $this->assertGreaterThan(0, count($errors));
     }
 
     public function testJwtNoToken()
     {
-        $validationResult = JwtService::getInstance()->validate(null);
+        $validationResult = $this->jwtService->validate(null);
         $this->assertFalse($validationResult);
     }
 }

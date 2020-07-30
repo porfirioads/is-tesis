@@ -22,12 +22,14 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     use DatabaseMigrations;
 
     private $reportService;
+    private $jwtService;
 
     public function setUp(): void
     {
         parent::setUp();
         ObjectFactory::$useMocks = false;
         $this->reportService = ObjectFactory::getReportService();
+        $this->jwtService = ObjectFactory::getJwtService();
         ObjectFactory::$useMocks = true;
     }
 
@@ -57,8 +59,7 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     public function testInsertReport()
     {
         $testUser = Usuario::first();
-        $token = JwtService::getInstance()->generate($testUser->username);
-
+        $token = $this->jwtService->generate($testUser->username);
 
         $request = new Request([
             'lat' => 22.6482078,
@@ -74,7 +75,7 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     public function testInsertReportReincidence()
     {
         $testUser = Usuario::first();
-        $token = JwtService::getInstance()->generate($testUser->username);
+        $token = $this->jwtService->generate($testUser->username);
 
         $request = new Request([
             'lat' => 22.6482078,
