@@ -58,10 +58,6 @@ class ObjectFactory
 
     public static function getJwtService()
     {
-        if (ObjectFactory::$useMocks) {
-            return ObjectFactory::$jwtServiceMock;
-        } else {
-            return new JwtService();
-        }
+        return new JwtService();
     }
 }
