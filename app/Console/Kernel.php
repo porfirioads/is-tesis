@@ -8,7 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     /**
-     * The Artisan commands provided by your application.
+     * The Artisan bashcmd provided by your application.
      *
      * @var array
      */
@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     }
 
     /**
-     * Register the commands for the application.
+     * Register the bashcmd for the application.
      *
      * @return void
      */
