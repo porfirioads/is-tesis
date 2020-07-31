@@ -8,6 +8,9 @@
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
 <!--            <file>./tests/Unit/U05_JwtMiddlewareTest.php</file>-->
+<!--            <file>./tests/Unit/U06_DeleteFeedbackValidatorTest.php</file>-->
+<!--            <file>./tests/Unit/U07_DeleteReportValidatorTest.php</file>-->
+<!--            <file>./tests/Unit/U08_RequestValidatorTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
