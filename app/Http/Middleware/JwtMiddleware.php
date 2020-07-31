@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Http\Responses\JsonResponse;
 use App\ObjectFactory;
-use App\Services\JwtService;
 use Closure;
 
 class JwtMiddleware

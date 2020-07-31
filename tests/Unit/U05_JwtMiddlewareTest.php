@@ -7,25 +7,20 @@ use Tests\TestCase;
 
 class U05_JwtMiddlewareTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-        ObjectFactory::$useMocks = true;
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-        ObjectFactory::$useMocks = false;
-    }
-
     public function testSuccessAuthentication()
     {
-        $this->markTestIncomplete();
+        $jwtService = ObjectFactory::getJwtService();
+        $token = $jwtService->generate('porfirioangel');
+        $headers = ['Authorization' => "Bearer $token"];
+        $response = $this->post('api/validate_token', [], $headers);
+        $response->assertStatus(200);
     }
 
-    public function testErrorAuthentication()
+    public function testToken()
     {
-        $this->markTestIncomplete();
+        $token = 'some_invalid_token';
+        $headers = ['Authorization' => "Bearer $token"];
+        $response = $this->post('api/validate_token', [], $headers);
+        $response->assertStatus(401);
     }
 }
