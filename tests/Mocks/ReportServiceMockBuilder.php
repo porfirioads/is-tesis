@@ -134,6 +134,12 @@ class ReportServiceMockBuilder
         return $this;
     }
 
+    public function mockDeleteReport()
+    {
+        $this->mockFunction('deleteReport', ["query_status" => 1]);
+        return $this;
+    }
+
     public function getResult()
     {
         return $this->mock;

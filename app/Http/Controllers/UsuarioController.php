@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Responses\JsonResponse;
 use App\Http\Validators\LoginValidator;
 use App\Models\Usuario;
+use App\ObjectFactory;
 use App\Services\JwtService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class UsuarioController extends Controller
             return JsonResponse::error(['auth' => 'Credenciales inválidas'], 401);
         }
 
-        $token = JwtService::getInstance()->generate($username);
+        $token = ObjectFactory::getJwtService()->generate($username);
         return JsonResponse::ok([
             'token' => $token,
             'usuario' => $user

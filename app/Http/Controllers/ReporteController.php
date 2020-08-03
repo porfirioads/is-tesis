@@ -42,7 +42,7 @@ class ReporteController extends Controller
 
     public function updateReportType(Request $request)
     {
-        $validator = ObjectFactory::getUpdateReportTypeValidatorMock($request);
+        $validator = ObjectFactory::getUpdateReportTypeValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);
@@ -57,7 +57,7 @@ class ReporteController extends Controller
 
     public function deleteReport(Request $request)
     {
-        $validator = new DeleteReportValidator($request);
+        $validator = ObjectFactory::getDeleteReportValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Validators\DeleteReportValidator;
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
 use App\Services\JwtService;
@@ -18,6 +19,7 @@ class ObjectFactory
     public static $reportServiceMock = null;
     public static $insertReportValidatorMock = null;
     public static $updateReportTypeValidatorMock = null;
+    public static $deleteReportValidatorMock = null;
     public static $jwtServiceMock = null;
 
     public static function getReportService()
@@ -47,12 +49,21 @@ class ObjectFactory
         }
     }
 
-    public static function getUpdateReportTypeValidatorMock($request)
+    public static function getUpdateReportTypeValidator($request)
     {
         if (ObjectFactory::$useMocks) {
             return ObjectFactory::$updateReportTypeValidatorMock;
         } else {
             return new UpdateTipoReporteValidator($request);
+        }
+    }
+
+    public static function getDeleteReportValidator($request)
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$deleteReportValidatorMock;
+        } else {
+            return new DeleteReportValidator($request);
         }
     }
 
