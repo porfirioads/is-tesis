@@ -12,6 +12,5 @@ class Strings
         $camel = preg_replace('/(?!^)[[:upper:]][[:lower:]]/', '$0',
             preg_replace('/(?!^)[[:upper:]]+/', $splitter . '$0', $camel));
         return strtolower($camel);
-
     }
 }

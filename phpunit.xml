@@ -19,6 +19,8 @@
 <!--            <file>./tests/Unit/U10_InsertReportValidatorTest.php</file>-->
 <!--            <file>./tests/Unit/U11_LoginValidatorTest.php</file>-->
 <!--            <file>./tests/Unit/U12_UpdateTipoReporteValidatorTest.php</file>-->
+<!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+<!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
