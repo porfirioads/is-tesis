@@ -15,6 +15,13 @@ use Illuminate\Http\Request;
  */
 class UsuarioController extends Controller
 {
+    private $userService;
+
+    public function __construct()
+    {
+        $this->userService = ObjectFactory::getUserService();
+    }
+
     /**
      * Obtiene la lista de usuarios.
      *
@@ -23,7 +30,7 @@ class UsuarioController extends Controller
      */
     public function getUsers(Request $request)
     {
-        $usuarios = UserService::getInstance()->getAll();
+        $usuarios = $this->userService->getAll();
         return JsonResponse::ok($usuarios);
     }
 
@@ -36,7 +43,7 @@ class UsuarioController extends Controller
      */
     public function login(Request $request)
     {
-        $validator = new LoginValidator($request);
+        $validator = ObjectFactory::getLoginValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);
@@ -44,7 +51,7 @@ class UsuarioController extends Controller
 
         $username = $request['username'];
         $password = $request['password'];
-        $user = UserService::getInstance()->getByCredentials($username, $password);
+        $user = $this->userService->getByCredentials($username, $password);
 
         if (!$user) {
             return JsonResponse::error(['auth' => 'Credenciales inválidas'], 401);

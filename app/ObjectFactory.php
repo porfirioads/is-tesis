@@ -6,9 +6,11 @@ use App\Http\Validators\DeleteFeedbackValidator;
 use App\Http\Validators\DeleteReportValidator;
 use App\Http\Validators\InsertFeedbackValidator;
 use App\Http\Validators\InsertReportValidator;
+use App\Http\Validators\LoginValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
 use App\Services\JwtService;
 use App\Services\ReportService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
@@ -25,6 +27,8 @@ class ObjectFactory
     public static $jwtServiceMock = null;
     public static $insertFeedbackValidatorMock = null;
     public static $deleteFeedbackValidatorMock = null;
+    public static $userServiceMock = null;
+    public static $loginValidatorMock = null;
 
     public static function getReportService()
     {
@@ -91,6 +95,24 @@ class ObjectFactory
             return ObjectFactory::$deleteFeedbackValidatorMock;
         } else {
             return new DeleteFeedbackValidator($request);
+        }
+    }
+
+    public static function getUserService()
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$userServiceMock;
+        } else {
+            return new UserService();
+        }
+    }
+
+    public static function getLoginValidator($request)
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$loginValidatorMock;
+        } else {
+            return new LoginValidator($request);
         }
     }
 }
