@@ -134,7 +134,8 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         $this->assertCount(1, $data->errors->testing);
     }
 
-    public function testDeleteReport() {
+    public function testDeleteReport()
+    {
         ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
             ->mockDeleteReport()
             ->getResult();
@@ -146,10 +147,12 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         $response = $controller->deleteReport($request);
         $this->assertEquals(200, $response->status());
         $data = $response->getData();
-        $this->assertErrorValidation($data);
+        $this->assertObjectHasAttribute('query_status', $data);
+        $this->assertEquals(1, $data->query_status);
     }
 
-    public function testDeleteReportInvalid() {
+    public function testDeleteReportInvalid()
+    {
         ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
             ->mockDeleteReport()
             ->getResult();
