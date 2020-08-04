@@ -140,6 +140,22 @@ class ReportServiceMockBuilder
         return $this;
     }
 
+    public function mockGetPendingFeedback()
+    {
+        $this->mockFunction('getPendingFeedback', [
+            [
+                "id" => 1,
+                "fecha" => "2020-07-28 17 =>32 =>14",
+                "estatus" => "en progreso",
+                "mensaje" => "Ya nos encontramos atendiendo tu reporte",
+                "notificado" => 0,
+                "reporte_id" => 1
+            ]
+        ]);
+
+        return $this;
+    }
+
     public function getResult()
     {
         return $this->mock;

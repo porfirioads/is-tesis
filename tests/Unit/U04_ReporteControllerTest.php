@@ -166,4 +166,26 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         $data = $response->getData();
         $this->assertErrorValidation($data);
     }
+
+    public function testGetPendingFeedback() {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockGetPendingFeedback()
+            ->getResult();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->getPendingFeedback($request);
+        $this->assertEquals(200, $response->status());
+        $data = $response->getData();
+        $this->assertIsArray($data);
+
+        foreach ($data as $feedback) {
+            $this->assertObjectHasAttribute('id', $feedback);
+            $this->assertObjectHasAttribute('fecha', $feedback);
+            $this->assertObjectHasAttribute('estatus', $feedback);
+            $this->assertObjectHasAttribute('mensaje', $feedback);
+            $this->assertObjectHasAttribute('notificado', $feedback);
+            $this->assertObjectHasAttribute('reporte_id', $feedback);
+        }
+    }
 }
