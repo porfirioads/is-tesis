@@ -285,6 +285,14 @@ docker-compose exec app php artisan optimize:clear && docker-compose exec app ve
 docker-compose exec app php artisan optimize:clear && docker-compose exec app vendor/bin/phpunit --coverage-html tests/coverage-feature --testsuite=Feature
 ```
 
+## Behat
+
+```
+docker run --rm -v $(pwd):/app composer require --dev behat/behat
+docker-compose exec app vendor/bin/behat --init
+
+```
+
 ## Solución de errores
 
 **Mensaje:** docker: Got permission denied while trying to connect to the 
@@ -349,14 +357,3 @@ Illuminate\Contracts\Container\BindingResolutionException: Target class [Reporte
 ```
 docker run --rm -v $(pwd):/app composer dump-autoload
 ```
-
-## TODO's
-
-[ ] Crear automáticamente las bases de datos de producción y de pruebas.
-[ ] Asignarle automáticamente un usuario a las bases de datos anteriormente creadas.
-
-## Commands to create
-- make test
-- run test
-- make test coverage report
-- set permission
