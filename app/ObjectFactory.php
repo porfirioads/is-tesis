@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Http\Validators\DeleteFeedbackValidator;
 use App\Http\Validators\DeleteReportValidator;
+use App\Http\Validators\InsertFeedbackValidator;
 use App\Http\Validators\InsertReportValidator;
 use App\Http\Validators\UpdateTipoReporteValidator;
 use App\Services\JwtService;
@@ -21,6 +23,8 @@ class ObjectFactory
     public static $updateReportTypeValidatorMock = null;
     public static $deleteReportValidatorMock = null;
     public static $jwtServiceMock = null;
+    public static $insertFeedbackValidatorMock = null;
+    public static $deleteFeedbackValidatorMock = null;
 
     public static function getReportService()
     {
@@ -70,5 +74,23 @@ class ObjectFactory
     public static function getJwtService()
     {
         return new JwtService();
+    }
+
+    public static function getInsertFeedbackValidator($request)
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$insertFeedbackValidatorMock;
+        } else {
+            return new InsertFeedbackValidator($request);
+        }
+    }
+
+    public static function getDeleteFeedbackValidator($request)
+    {
+        if (ObjectFactory::$useMocks) {
+            return ObjectFactory::$deleteFeedbackValidatorMock;
+        } else {
+            return new DeleteFeedbackValidator($request);
+        }
     }
 }

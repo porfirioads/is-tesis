@@ -156,6 +156,29 @@ class ReportServiceMockBuilder
         return $this;
     }
 
+    public function mockInsertFeedback()
+    {
+        $this->mockFunction('insertFeedback', [
+            "reporte_id" => "2",
+            "estatus" => "atendido",
+            "mensaje" => "Tu reporte está siendo atendido",
+            "fecha" => "2020-08-04 16:16:12",
+            "notificado" => false,
+            "id" => 4
+        ]);
+
+        return $this;
+    }
+
+    public function mockDeleteFeedback()
+    {
+        $this->mockFunction('deleteFeedback', [
+            "query_status" => 1
+        ]);
+
+        return $this;
+    }
+
     public function getResult()
     {
         return $this->mock;

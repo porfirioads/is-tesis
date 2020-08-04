@@ -77,7 +77,7 @@ class ReporteController extends Controller
 
     public function insertFeedback(Request $request)
     {
-        $validator = new InsertFeedbackValidator($request);
+        $validator = ObjectFactory::getInsertFeedbackValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);
@@ -90,7 +90,7 @@ class ReporteController extends Controller
 
     public function deleteFeedback(Request $request)
     {
-        $validator = new DeleteFeedbackValidator($request);
+        $validator = ObjectFactory::getDeleteFeedbackValidator($request);
 
         if (!$validator->validate()) {
             return JsonResponse::error($validator->getErrors(), 400);

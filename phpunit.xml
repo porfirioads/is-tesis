@@ -6,21 +6,21 @@
 >
     <testsuites>
         <testsuite name="Unit">
-<!--            <directory suffix="Test.php">./tests/Unit</directory>-->
-<!--            <file>./tests/Unit/U01_JwtServiceTest.php</file>-->
-<!--            <file>./tests/Unit/U02_UserServiceTest.php</file>-->
-<!--            <file>./tests/Unit/U03_ReportServiceTest.php</file>-->
-            <file>./tests/Unit/U04_ReporteControllerTest.php</file>
-<!--            <file>./tests/Unit/U05_JwtMiddlewareTest.php</file>-->
-<!--            <file>./tests/Unit/U06_DeleteFeedbackValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U07_DeleteReportValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U08_RequestValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U09_InsertFeedbackValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U10_InsertReportValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U11_LoginValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U12_UpdateTipoReporteValidatorTest.php</file>-->
-<!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
-<!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
+            <directory suffix="Test.php">./tests/Unit</directory>
+            <!--            <file>./tests/Unit/U01_JwtServiceTest.php</file>-->
+            <!--            <file>./tests/Unit/U02_UserServiceTest.php</file>-->
+            <!--            <file>./tests/Unit/U03_ReportServiceTest.php</file>-->
+            <!--            <file>./tests/Unit/U04_ReporteControllerTest.php</file>-->
+            <!--            <file>./tests/Unit/U05_JwtMiddlewareTest.php</file>-->
+            <!--            <file>./tests/Unit/U06_DeleteFeedbackValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U07_DeleteReportValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U08_RequestValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U09_InsertFeedbackValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U10_InsertReportValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U11_LoginValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U12_UpdateTipoReporteValidatorTest.php</file>-->
+            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
@@ -41,6 +41,7 @@
                 <file>app/Http/Middleware/TrustHosts.php</file>
                 <file>app/Http/Middleware/TrustProxies.php</file>
                 <file>app/Http/Middleware/VerifyCsrfToken.php</file>
+                <file>app/ObjectFactory.php</file>
             </exclude>
         </whitelist>
     </filter>

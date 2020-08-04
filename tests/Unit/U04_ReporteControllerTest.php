@@ -167,7 +167,18 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         $this->assertErrorValidation($data);
     }
 
-    public function testGetPendingFeedback() {
+    private function assertFeedbackAttributes($feedback)
+    {
+        $this->assertObjectHasAttribute('id', $feedback);
+        $this->assertObjectHasAttribute('fecha', $feedback);
+        $this->assertObjectHasAttribute('estatus', $feedback);
+        $this->assertObjectHasAttribute('mensaje', $feedback);
+        $this->assertObjectHasAttribute('notificado', $feedback);
+        $this->assertObjectHasAttribute('reporte_id', $feedback);
+    }
+
+    public function testGetPendingFeedback()
+    {
         ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
             ->mockGetPendingFeedback()
             ->getResult();
@@ -180,12 +191,72 @@ class U04_ReporteControllerTest extends DatabaseEachTestCase
         $this->assertIsArray($data);
 
         foreach ($data as $feedback) {
-            $this->assertObjectHasAttribute('id', $feedback);
-            $this->assertObjectHasAttribute('fecha', $feedback);
-            $this->assertObjectHasAttribute('estatus', $feedback);
-            $this->assertObjectHasAttribute('mensaje', $feedback);
-            $this->assertObjectHasAttribute('notificado', $feedback);
-            $this->assertObjectHasAttribute('reporte_id', $feedback);
+            $this->assertFeedbackAttributes($feedback);
         }
+    }
+
+    public function testInsertFeedback()
+    {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockInsertFeedback()
+            ->getResult();
+
+        ObjectFactory::$insertFeedbackValidatorMock = RequestValidatorMockBuilder::successValidation();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->insertFeedback($request);
+        $this->assertEquals(200, $response->status());
+        $data = $response->getData();
+        $this->assertFeedbackAttributes($data);
+    }
+
+    public function testInsertFeedbackInvalid()
+    {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockInsertFeedback()
+            ->getResult();
+
+        ObjectFactory::$insertFeedbackValidatorMock = RequestValidatorMockBuilder::errorValidation();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->insertFeedback($request);
+        $this->assertEquals(400, $response->status());
+        $data = $response->getData();
+        $this->assertErrorValidation($data);
+    }
+
+    public function testDeleteFeedback()
+    {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockDeleteFeedback()
+            ->getResult();
+
+        ObjectFactory::$deleteFeedbackValidatorMock = RequestValidatorMockBuilder::successValidation();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->deleteFeedback($request);
+        $this->assertEquals(200, $response->status());
+        $data = $response->getData();
+        $this->assertObjectHasAttribute('query_status', $data);
+        $this->assertEquals(1, $data->query_status);
+    }
+
+    public function testDeleteFeedbackInvalid()
+    {
+        ObjectFactory::$reportServiceMock = ReportServiceMockBuilder::create()
+            ->mockDeleteFeedback()
+            ->getResult();
+
+        ObjectFactory::$deleteFeedbackValidatorMock = RequestValidatorMockBuilder::errorValidation();
+
+        $controller = new ReporteController();
+        $request = new Request();
+        $response = $controller->deleteFeedback($request);
+        $this->assertEquals(400, $response->status());
+        $data = $response->getData();
+        $this->assertErrorValidation($data);
     }
 }
