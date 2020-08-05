@@ -9,8 +9,11 @@ class Strings
 {
     public static function uncamelize($camel, $splitter = "_")
     {
-        $camel = preg_replace('/(?!^)[[:upper:]][[:lower:]]/', '$0',
-            preg_replace('/(?!^)[[:upper:]]+/', $splitter . '$0', $camel));
+        $camel = preg_replace(
+            '/(?!^)[[:upper:]][[:lower:]]/',
+            '$0',
+            preg_replace('/(?!^)[[:upper:]]+/', $splitter . '$0', $camel)
+        );
         return strtolower($camel);
     }
 }

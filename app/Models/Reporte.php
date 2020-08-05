@@ -56,7 +56,8 @@ class Reporte extends Model
         return $this->hasMany(SeguimientoReporte::class)->orderByDesc('fecha');
     }
 
-    public function incidencias() {
+    public function incidencias()
+    {
         return $this->hasMany(IncidenciaReporte::class)->orderByDesc('fecha');
     }
 }

@@ -39,8 +39,11 @@ class RequestValidator
             return false;
         }
 
-        $validator = Validator::make($this->request->all(), $this->validations,
-            $this->getValidationMessages());
+        $validator = Validator::make(
+            $this->request->all(),
+            $this->validations,
+            $this->getValidationMessages()
+        );
 
         if ($validator->passes()) {
             return true;
@@ -126,7 +129,9 @@ class RequestValidator
 
         foreach ($this->validations as $field => $validations) {
             foreach ($validations as $validation) {
-                if (gettype($validation) !== gettype('')) continue;
+                if (gettype($validation) !== gettype('')) {
+                    continue;
+                }
 
                 $validationParts = explode(':', $validation);
                 $validationType = $validationParts[0];
@@ -143,8 +148,11 @@ class RequestValidator
 
                 if ($validationParameter) {
                     $customMessages["$field.$validationType"] =
-                        str_replace('{value}', $validationParameter,
-                            $customMessages["$field.$validationType"]);
+                        str_replace(
+                            '{value}',
+                            $validationParameter,
+                            $customMessages["$field.$validationType"]
+                        );
                 }
             }
         }
@@ -161,5 +169,4 @@ class RequestValidator
     {
         return $this->errors;
     }
-
 }

@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
         405 - MethodNotAllowed
         500 - InternalServerError
         */
-        
+
         $class = get_class($exception);
         $diagonal_index = strrpos($class, '\\');
         $diagonal_index += $diagonal_index ? 1 : 0;
@@ -73,25 +73,12 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof HttpException) {
             $code = $exception->getStatusCode();
-        } else if ($exception instanceof JWTException) {
-            // $code = 400;
-            
-            // if ($exception instanceof TokenInvalidException){
-            //     $class = 'TokenInvalid';
-            // }else if ($exception instanceof TokenExpiredException){
-            //     $class = 'TokenExpired';
-            //     $code = 401;
-            // }else{
-            //     $class = 'TokenNotFound';
-            // }
         } else {
             $code = 500;
-            $class = $class ==='Error' ? 'InternalServerError' : $class;
+            $class = $class === 'Error' ? 'InternalServerError' : $class;
             // Log::error($exception->getTraceAsString());
             Log::error($exception->getMessage());
         }
-
-        
 
         return JsonResponse::error(['application_error' => $class], $code);
     }

@@ -45,8 +45,12 @@ class ReportService extends BaseService
 
         // Busca si existe un reporte cercano.
         foreach ($reportes as $reporte) {
-            $distance = $this->distance($reporte->lat, $reporte->lng,
-                $fields['lat'], $fields['lng']);
+            $distance = $this->distance(
+                $reporte->lat,
+                $reporte->lng,
+                $fields['lat'],
+                $fields['lng']
+            );
 
             if ($distance <= 15) {
                 $reporteExistente = $reporte;

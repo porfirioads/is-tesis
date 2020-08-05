@@ -16,7 +16,8 @@ class JsonResponse
      * @param $data
      * @return \Illuminate\Http\JsonResponse|object
      */
-    private static function base($statusCode, $data) {
+    private static function base($statusCode, $data)
+    {
         return response()
             ->json($data)
             ->header('Content-Type', 'application/json')
@@ -29,7 +30,8 @@ class JsonResponse
      * @param $data
      * @return \Illuminate\Http\JsonResponse|object
      */
-    public static function ok($data) {
+    public static function ok($data)
+    {
         return JsonResponse::base(200, $data);
     }
 
@@ -40,10 +42,10 @@ class JsonResponse
      * @param $statusCode
      * @return \Illuminate\Http\JsonResponse|object
      */
-    public static function error($data, $statusCode) {
+    public static function error($data, $statusCode)
+    {
         return JsonResponse::base($statusCode, [
             'errors' => $data
         ]);
     }
-
 }

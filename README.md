@@ -290,7 +290,18 @@ docker-compose exec app php artisan optimize:clear && docker-compose exec app ve
 ```
 docker run --rm -v $(pwd):/app composer require --dev behat/behat
 docker-compose exec app vendor/bin/behat --init
+```
 
+## PHP Code Sniffer
+
+```
+docker run --rm -v $(pwd):/app composer require --dev squizlabs/php_codesniffer
+docker-compose exec app vendor/bin/phpcs
+```
+
+```
+docker run --rm -v $(pwd):/app composer require --dev behat/behat
+docker-compose exec app vendor/bin/behat --init
 ```
 
 ## Solución de errores
