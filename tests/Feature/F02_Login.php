@@ -10,7 +10,9 @@ use Tests\DatabaseTestCase;
 
 class F02_Login extends DatabaseTestCase implements Context
 {
-    private static $response;
+    private static $loginResponse;
+    private static $tokenValidationResponse;
+    private static $validationToken;
 
     /**
      * @Given /^there are valid users in the system$/
@@ -33,9 +35,11 @@ class F02_Login extends DatabaseTestCase implements Context
      */
     public function iLoginUsingValidCredentials()
     {
+        F02_Login::$validationToken = null;
         $data = ['username' => 'marmor', 'password' => 'marmor'];
-        F02_Login::$response = $this->post('api/login', $data);
-        F02_Login::$response->assertStatus(200);
+        F02_Login::$loginResponse = $this->post('api/login', $data);
+        F02_Login::$loginResponse->assertStatus(200);
+        F02_Login::$validationToken = F02_Login::$loginResponse->getData()->token;
     }
 
     /**
@@ -43,7 +47,7 @@ class F02_Login extends DatabaseTestCase implements Context
      */
     public function iGetATokenAndTheUserData()
     {
-        $data = F02_Login::$response->getData();
+        $data = F02_Login::$loginResponse->getData();
         $expectedAttributes = ['token', 'usuario'];
 
         foreach ($expectedAttributes as $attribute) {
@@ -69,7 +73,7 @@ class F02_Login extends DatabaseTestCase implements Context
     public function iLoginUsingInvalidCredentials()
     {
         $data = ['username' => 'marmor', 'password' => 'marmors'];
-        F02_Login::$response = $this->post('api/login', $data);
+        F02_Login::$loginResponse = $this->post('api/login', $data);
         $this->assertTrue(true);
     }
 
@@ -78,7 +82,7 @@ class F02_Login extends DatabaseTestCase implements Context
      */
     public function iGetAnAuthenticationError()
     {
-        F02_Login::$response->assertStatus(401);
+        F02_Login::$loginResponse->assertStatus(401);
     }
 
     /**
@@ -87,7 +91,7 @@ class F02_Login extends DatabaseTestCase implements Context
     public function iLoginWithoutSpecifyAPassword()
     {
         $data = ['username' => 'marmor'];
-        F02_Login::$response = $this->post('api/login', $data);
+        F02_Login::$loginResponse = $this->post('api/login', $data);
         $this->assertTrue(true);
     }
 
@@ -96,6 +100,50 @@ class F02_Login extends DatabaseTestCase implements Context
      */
     public function iGetAValidationError()
     {
-        F02_Login::$response->assertStatus(400);
+        F02_Login::$loginResponse->assertStatus(400);
+    }
+
+    /**
+     * @When /^I verify the token$/
+     */
+    public function iVerifyTheToken()
+    {
+        $token = F02_Login::$validationToken;
+        $headers = ['Authorization' => "Bearer $token"];
+        F02_Login::$tokenValidationResponse = $this->post('api/validate_token',
+            [], $headers);
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @Then /^I get a success token validation message\.$/
+     */
+    public function iGetASuccessTokenValidationMessage()
+    {
+        F02_Login::$tokenValidationResponse->assertStatus(200);
+        $data = F02_Login::$tokenValidationResponse->getData();
+        $this->assertObjectHasAttribute('result', $data);
+        $this->assertEquals('PRUEBA DE TOKEN EXISTOSA', $data->result);
+    }
+
+    /**
+     * @Given /^I have an invalid token$/
+     */
+    public function iHaveAnInvalidToken()
+    {
+        F02_Login::$validationToken = 'SomeInvalidToken';
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @Then /^I get an error token validation message\.$/
+     */
+    public function iGetAnErrorTokenValidationMessage()
+    {
+        F02_Login::$tokenValidationResponse->assertStatus(401);
+        $data = F02_Login::$tokenValidationResponse->getData();
+        $this->assertObjectHasAttribute('errors', $data);
+        $this->assertObjectHasAttribute('auth', $data->errors);
+        $this->assertEquals('El token de autenticación es inválido', $data->errors->auth);
     }
 }

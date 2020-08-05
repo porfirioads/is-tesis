@@ -18,3 +18,14 @@ Feature: Login.
         When I login without specify a password
         Then I get a validation error
 
+    Scenario: Validate correct token.
+        Given there are valid users in the system
+        And I login using valid credentials
+        When I verify the token
+        Then I get a success token validation message.
+
+    Scenario: Validate incorrect token.
+        Given I have an invalid token
+        When I verify the token
+        Then I get an error token validation message.
+
