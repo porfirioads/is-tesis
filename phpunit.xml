@@ -25,6 +25,9 @@
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
+<!--            <file>./tests/Feature/F01S01_GetUsers_UserListWithItems_Test.php</file>-->
+<!--            <file>./tests/Feature/F01S02_GetUsers_UserListEmpty_Test.php</file>-->
+<!--            <file>./tests/Feature/F02S01_Login_LoginCorrect_Test.php</file>-->
         </testsuite>
     </testsuites>
     <filter>

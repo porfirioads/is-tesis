@@ -12,7 +12,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class DatabaseEachTestCase extends TestCase
 {
     use RefreshDatabase;
-    use DatabaseMigrations;
 
     public function setUp(): void
     {

@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
 
-class F02_GetReports implements Context
+class F00_GetReports implements Context
 {
     /**
      * @Given /^the reports list has items$/

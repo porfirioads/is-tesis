@@ -11,8 +11,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
  */
 class DatabaseTestCase extends TestCase
 {
-    use RefreshDatabase;
-    use DatabaseMigrations;
+//    use RefreshDatabase;
+//    use DatabaseMigrations;
 
     private static $dbSeeded = false;
 
@@ -32,7 +32,7 @@ class DatabaseTestCase extends TestCase
     {
         parent::setUp();
         if (!DatabaseTestCase::$dbSeeded) {
-            $this->seed();
+            $this->artisan('migrate:fresh --seed');
             DatabaseTestCase::$dbSeeded = true;
         }
     }
