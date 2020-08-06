@@ -5,6 +5,7 @@ Feature: Get reports.
 
     Scenario: Reports list with items.
         Given the reports list has items
+        And I am logged as an admin
         When the reports list is returned
         Then each element has the "id" attribute
         And each element has the "tipo" attribute

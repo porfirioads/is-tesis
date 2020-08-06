@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Usuario;
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Hash;
 use Tests\DatabaseTestCase;
 
