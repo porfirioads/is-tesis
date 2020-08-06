@@ -32,9 +32,11 @@
             <!--            <file>./tests/Feature/F02S03_Login_LoginWithMissingData_Test.php</file>-->
             <!--            <file>./tests/Feature/F02S04_Login_ValidateCorrectToken_Test.php</file>-->
             <!--            <file>./tests/Feature/F02S05_Login_ValidateIncorrectToken_Test.php</file>-->
-            <!--                        <file>./tests/Feature/F03S01_GetReports_ReportListWithItems_Test.php</file>-->
+            <!--            <file>./tests/Feature/F03S01_GetReports_ReportListWithItems_Test.php</file>-->
             <!--            <file>./tests/Feature/F04S01_InsertReport_SuccessfulReportInsertion_Test.php</file>-->
             <!--            <file>./tests/Feature/F04S02_InsertReport_MissingDataReportInsertion_Test.php</file>-->
+            <!--            <file>./tests/Feature/F05S01_UpdateReportType_Successful_Test.php</file>-->
+            <!--            <file>./tests/Feature/F05S02_UpdateReportType_NonExistentType_Test.php</file>-->
         </testsuite>
     </testsuites>
     <filter>
