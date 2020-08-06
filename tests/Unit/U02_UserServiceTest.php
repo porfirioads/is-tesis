@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Services\UserService;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U02_UserServiceTest extends DatabaseEachTestCase
 {
     private $userService;

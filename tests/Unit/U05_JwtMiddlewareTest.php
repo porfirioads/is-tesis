@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\ObjectFactory;
 use Tests\TestCase;
 
+// phpcs:ignore
 class U05_JwtMiddlewareTest extends TestCase
 {
     public function testSuccessAuthentication()

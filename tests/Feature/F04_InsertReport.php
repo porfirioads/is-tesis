@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Services\DatabaseEnums;
-use Behat\Behat\Tester\Exception\PendingException;
 use Illuminate\Http\UploadedFile;
 
+// phpcs:ignore
 class F04_InsertReport extends F00_GeneralSteps
 {
     private static $responseData;

@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Utils\Objects;
 use Tests\TestCase;
 
+// phpcs:ignore
 class U13_ObjectsUtilsTest extends TestCase
 {
     public function testUsuarioHasCorrectAttributes()

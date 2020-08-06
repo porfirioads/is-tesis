@@ -6,6 +6,7 @@ use App\Http\Validators\RequestValidator;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
+// phpcs:ignore
 class U08_RequestValidatorTest extends TestCase
 {
     public function testBaseValidatorException()

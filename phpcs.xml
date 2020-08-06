@@ -8,4 +8,7 @@
     <exclude-pattern>database/</exclude-pattern>
     <exclude-pattern>storage/</exclude-pattern>
     <exclude-pattern>node_modules/</exclude-pattern>
+    <file>tests/</file>
+    <exclude-pattern>coverage-feature/</exclude-pattern>
+    <exclude-pattern>coverage-unit/</exclude-pattern>
 </ruleset>

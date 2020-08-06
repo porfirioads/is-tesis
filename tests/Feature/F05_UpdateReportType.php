@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Services\DatabaseEnums;
-use Behat\Behat\Tester\Exception\PendingException;
 
+// phpcs:ignore
 class F05_UpdateReportType extends F00_GeneralSteps
 {
     private static $responseData;

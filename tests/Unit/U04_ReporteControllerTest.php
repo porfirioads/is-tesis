@@ -12,6 +12,7 @@ use Tests\DatabaseEachTestCase;
 use Tests\Mocks\RequestValidatorMockBuilder;
 use Tests\Mocks\ReportServiceMockBuilder;
 
+// phpcs:ignore
 class U04_ReporteControllerTest extends DatabaseEachTestCase
 {
     use WithoutMiddleware;

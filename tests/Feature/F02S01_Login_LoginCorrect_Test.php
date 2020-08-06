@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F02S01_Login_LoginCorrect_Test extends F02_Login
 {
     public function testGivenThereAreValidUsersInTheSystem()

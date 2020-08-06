@@ -78,7 +78,10 @@ class UserServiceMockBuilder
     public function mockGetUserByCredentials()
     {
         $this->mockFunction('getByCredentials', [
-            "token" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTY1NDk5NDgsInVpZCI6MTU5NjU0OTk0OCwiaXNzIjoibG9jYWxob3N0IiwidXNlcm5hbWUiOiJwb3JmaXJpb2FkcyJ9.cNrBzf2QBxcsVf8iDrWl24saTXYr3hR20U6Ju7kvoSg",
+            "token" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." .
+                "eyJpYXQiOjE1OTY1NDk5NDgsInVpZCI6MTU5NjU0OTk0" .
+                "OCwiaXNzIjoibG9jYWxob3N0IiwidXNlcm5hbWUiOiJw" .
+                "b3JmaXJpb2FkcyJ9.cNrBzf2QBxcsVf8iDrWl24saTXYr3hR20U6Ju7kvoSg",
             "usuario" => [
                 "id" => 1,
                 "username" => "porfirioads",

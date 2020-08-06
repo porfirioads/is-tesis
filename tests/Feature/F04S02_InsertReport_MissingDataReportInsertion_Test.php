@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F04S02_InsertReport_MissingDataReportInsertion_Test extends F04_InsertReport
 {
     public function testGivenIAmLoggedInTheSystem()

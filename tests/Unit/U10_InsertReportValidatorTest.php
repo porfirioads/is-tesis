@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U10_InsertReportValidatorTest extends DatabaseEachTestCase
 {
     public function testValidationSuccess()

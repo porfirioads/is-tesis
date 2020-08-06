@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F03S01_GetReports_ReportListWithItems_Test extends F03_GetReports
 {
     public function testGivenTheReportsListHasItems()

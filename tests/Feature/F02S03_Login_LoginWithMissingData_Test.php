@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F02S03_Login_LoginWithMissingData_Test extends F02_Login
 {
     public function testGivenThereAreValidUsersInTheSystem()

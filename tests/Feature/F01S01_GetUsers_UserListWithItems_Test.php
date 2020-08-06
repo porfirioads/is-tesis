@@ -2,21 +2,26 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F01S01_GetUsers_UserListWithItems_Test extends F01_GetUsers
 {
-    public function testGivenTheUserListHasItems() {
+    public function testGivenTheUserListHasItems()
+    {
         $this->theUsersListHasItems();
     }
 
-    public function testWhenTheUsersListIsReturned() {
+    public function testWhenTheUsersListIsReturned()
+    {
         $this->theUsersListIsReturned();
     }
 
-    public function testThenEachElementHasTheIdAttribute() {
+    public function testThenEachElementHasTheIdAttribute()
+    {
         $this->eachUserHasTheAttribute('id');
     }
 
-    public function testAndEachElementHasTheUsernameAttribute() {
+    public function testAndEachElementHasTheUsernameAttribute()
+    {
         $this->eachUserHasTheAttribute('username');
     }
 }

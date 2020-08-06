@@ -3,9 +3,9 @@
 namespace Tests\Unit;
 
 use App\ObjectFactory;
-use App\Services\JwtService;
 use Tests\TestCase;
 
+// phpcs:ignore
 class U01_JwtServiceTest extends TestCase
 {
     private $jwtService;

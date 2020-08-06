@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Usuario;
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Tests\DatabaseTestCase;
 
+// phpcs:ignore
 class F01_GetUsers extends DatabaseTestCase implements Context
 {
     private static $users;

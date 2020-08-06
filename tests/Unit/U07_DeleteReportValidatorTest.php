@@ -6,6 +6,7 @@ use App\Http\Validators\DeleteReportValidator;
 use Illuminate\Http\Request;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U07_DeleteReportValidatorTest extends DatabaseEachTestCase
 {
     public function testDeleteExistingReport()

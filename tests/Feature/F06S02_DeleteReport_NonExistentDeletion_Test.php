@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F06S02_DeleteReport_NonExistentDeletion_Test extends F06_DeleteReport
 {
     public function testGivenIAmLoggedInTheSystem()

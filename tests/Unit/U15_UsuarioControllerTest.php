@@ -8,11 +8,11 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\Request;
-use League\CommonMark\Block\Element\ThematicBreak;
 use Tests\DatabaseEachTestCase;
 use Tests\Mocks\RequestValidatorMockBuilder;
 use Tests\Mocks\UserServiceMockBuilder;
 
+// phpcs:ignore
 class U15_UsuarioControllerTest extends DatabaseEachTestCase
 {
     use WithoutMiddleware;

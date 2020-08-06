@@ -7,6 +7,7 @@ use App\Services\DatabaseEnums;
 use Illuminate\Http\Request;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U09_InsertFeedbackValidatorTest extends DatabaseEachTestCase
 {
     public function testValidationSuccess()

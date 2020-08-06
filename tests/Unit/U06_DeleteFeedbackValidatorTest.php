@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use App\Http\Validators\DeleteFeedbackValidator;
-use App\Http\Validators\RequestValidator;
 use Illuminate\Http\Request;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U06_DeleteFeedbackValidatorTest extends DatabaseEachTestCase
 {
     public function testDeleteExistingFeedback()

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F02S05_Login_ValidateIncorrectToken_Test extends F02_Login
 {
     public function testGivenIHaveAnInvalidToken()

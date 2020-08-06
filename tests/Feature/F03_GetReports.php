@@ -6,6 +6,7 @@ use App\Models\Reporte;
 use Behat\Behat\Context\Context;
 use Tests\DatabaseTestCase;
 
+// phpcs:ignore
 class F03_GetReports extends DatabaseTestCase implements Context
 {
     private static $reports;

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F06S01_DeleteReport_SuccessfulDeletion_Test extends F06_DeleteReport
 {
     public function testGivenIAmLoggedInTheSystem()

@@ -6,6 +6,7 @@ use App\Http\Validators\LoginValidator;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
+// phpcs:ignore
 class U11_LoginValidatorTest extends TestCase
 {
     public function testValidationSuccess()

@@ -7,7 +7,6 @@ use App\Models\SeguimientoReporte;
 use App\Models\Usuario;
 use App\ObjectFactory;
 use App\Services\DatabaseEnums;
-use App\Services\JwtService;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -15,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U03_ReportServiceTest extends DatabaseEachTestCase
 {
     use WithoutMiddleware;
@@ -93,8 +93,10 @@ class U03_ReportServiceTest extends DatabaseEachTestCase
     public function testUpdateReportType()
     {
         $testReport = Reporte::first();
-        $updatedReport = $this->reportService->updateReportType($testReport->id,
-            DatabaseEnums::RT_BASURA);
+        $updatedReport = $this->reportService->updateReportType(
+            $testReport->id,
+            DatabaseEnums::RT_BASURA
+        );
         $this->assertEquals(DatabaseEnums::RT_BASURA, $updatedReport->tipo);
     }
 

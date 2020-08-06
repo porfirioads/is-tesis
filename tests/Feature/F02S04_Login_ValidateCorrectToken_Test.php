@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F02S04_Login_ValidateCorrectToken_Test extends F02_Login
 {
     public function testGivenThereAreValidUsersInTheSystem()

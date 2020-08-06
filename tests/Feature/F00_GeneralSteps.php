@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Tests\DatabaseTestCase;
 
+// phpcs:ignore
 class F00_GeneralSteps extends DatabaseTestCase implements Context
 {
     public static $authToken;

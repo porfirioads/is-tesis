@@ -7,6 +7,7 @@ use Behat\Behat\Context\Context;
 use Hash;
 use Tests\DatabaseTestCase;
 
+// phpcs:ignore
 class F02_Login extends DatabaseTestCase implements Context
 {
     private static $loginResponse;
@@ -109,8 +110,11 @@ class F02_Login extends DatabaseTestCase implements Context
     {
         $token = F02_Login::$validationToken;
         $headers = ['Authorization' => "Bearer $token"];
-        F02_Login::$tokenValidationResponse = $this->post('api/validate_token',
-            [], $headers);
+        F02_Login::$tokenValidationResponse = $this->post(
+            'api/validate_token',
+            [],
+            $headers
+        );
         $this->assertTrue(true);
     }
 

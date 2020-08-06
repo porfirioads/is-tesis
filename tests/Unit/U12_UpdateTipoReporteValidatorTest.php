@@ -7,6 +7,7 @@ use App\Services\DatabaseEnums;
 use Illuminate\Http\Request;
 use Tests\DatabaseEachTestCase;
 
+// phpcs:ignore
 class U12_UpdateTipoReporteValidatorTest extends DatabaseEachTestCase
 {
     public function testValidationSuccess()
@@ -50,8 +51,10 @@ class U12_UpdateTipoReporteValidatorTest extends DatabaseEachTestCase
         $errors = $validator->getErrors();
         $this->assertFalse($success);
         $this->assertArrayHasKey('tipo', $errors);
-        $this->assertContains('El tipo debe ser alguno de los siguientes: ' .
+        $this->assertContains(
+            'El tipo debe ser alguno de los siguientes: ' .
             'baches, iluminación, basura, seguridad, jiapaz',
-            $errors['tipo']);
+            $errors['tipo']
+        );
     }
 }

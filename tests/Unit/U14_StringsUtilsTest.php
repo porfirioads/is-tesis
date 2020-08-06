@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Tests\Unit;
-
 
 use App\Utils\Strings;
 use Tests\TestCase;
 
+// phpcs:ignore
 class U14_StringsUtilsTest extends TestCase
 {
     public function testUncamelizeString()
