@@ -19,8 +19,8 @@
             <!--            <file>./tests/Unit/U10_InsertReportValidatorTest.php</file>-->
             <!--            <file>./tests/Unit/U11_LoginValidatorTest.php</file>-->
             <!--            <file>./tests/Unit/U12_UpdateTipoReporteValidatorTest.php</file>-->
-            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
-            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
+            <!--                        <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+            <!--                        <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
             <!--                        <file>./tests/Unit/U15_UsuarioControllerTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
@@ -43,6 +43,10 @@
             <!--            <file>./tests/Feature/F08S01_InsertFeedback_Successful_Test.php</file>-->
             <!--            <file>./tests/Feature/F08S02_InsertFeedback_MissingData_Test.php</file>-->
             <!--            <file>./tests/Feature/F08S03_InsertFeedback_NonExistentReport_Test.php</file>-->
+            <!--            <file>./tests/Feature/F09S01_DeleteFeedback_SuccessDeletion_Test.php</file>-->
+            <!--            <file>./tests/Feature/F09S02_DeleteFeedback_MissingData_Test.php</file>-->
+            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
+            <file>./tests/Unit/U14_StringsUtilsTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
