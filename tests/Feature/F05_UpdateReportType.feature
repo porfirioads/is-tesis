@@ -1,5 +1,5 @@
 Feature: Update report type
-    As a admin user
+    As an admin user
     I want to change the report type
     So that the relevant department can attend it
 

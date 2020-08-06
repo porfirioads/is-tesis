@@ -37,6 +37,8 @@
             <!--            <file>./tests/Feature/F04S02_InsertReport_MissingDataReportInsertion_Test.php</file>-->
             <!--            <file>./tests/Feature/F05S01_UpdateReportType_Successful_Test.php</file>-->
             <!--            <file>./tests/Feature/F05S02_UpdateReportType_NonExistentType_Test.php</file>-->
+<!--                        <file>./tests/Feature/F06S01_DeleteReport_SuccessfulDeletion_Test.php</file>-->
+<!--                        <file>./tests/Feature/F06S02_DeleteReport_NonExistentDeletion_Test.php</file>-->
         </testsuite>
     </testsuites>
     <filter>
