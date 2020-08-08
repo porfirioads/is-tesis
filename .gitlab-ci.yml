@@ -37,7 +37,8 @@ services:
 stages:
   - build
 
-build:
+build-docker:
+  stage: build
   before_script:
     - cp .env.example .env
   script:
