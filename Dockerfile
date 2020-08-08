@@ -32,7 +32,6 @@ RUN docker-php-ext-install exif
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
 RUN docker-php-ext-install gd
-#RUN docker-php-ext-install xdebug
 
 RUN pecl install xdebug && \
     docker-php-ext-enable xdebug
@@ -52,7 +51,6 @@ COPY . /var/www
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
-RUN chmod -R 775 /var/www/.
 
 # Change current user to www
 USER www
