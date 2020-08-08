@@ -41,6 +41,7 @@ stages:
 build-docker:
   stage: build
   before_script:
+    - id
     - whoami
     - pwd
     - ls -l
