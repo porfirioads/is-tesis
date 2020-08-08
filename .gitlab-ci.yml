@@ -30,12 +30,17 @@
 
 # .gitlab-ci.yml
 image: docker
+
 services:
   - docker:dind
+
+stages:
+  - build
+
 build:
   before_script:
     - cp .env.example .env
   script:
     - apk add --no-cache docker-compose
-#    - export HOST_USER_ID=1001
     - docker-compose up -d
+    - docker-compose exec app php artisan key:generate
