@@ -35,4 +35,5 @@ services:
 build:
   script:
     - apk add --no-cache docker-compose
+    - export HOST_USER_ID=1001
     - docker-compose up -d
