@@ -35,6 +35,7 @@ services:
   - docker:dind
 
 stages:
+  - prepare-docker
   - build
 
 build-docker:
@@ -46,7 +47,7 @@ build-docker:
     - docker-compose up -d
     - docker run --rm -v $(pwd):/app composer install
     - HOST_USER_ID=$(grep HOST_USER_ID .env | xargs) && HOST_USER_ID=${HOST_USER_ID#*=}
-    - sudo groupadd -g $HOST_USER_ID www
+    - groupadd -g $HOST_USER_ID www
     - sudo useradd -u $HOST_USER_ID -ms /bin/bash -g www www
     - sudo chown -R www:porfirioadmin tesis-ing-software/
     - sudo chmod -R 775 tesis-ing-software/
