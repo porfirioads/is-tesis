@@ -33,7 +33,9 @@ image: docker
 services:
   - docker:dind
 build:
+  before_script:
+    - cp .env.example .env
   script:
     - apk add --no-cache docker-compose
-    - export HOST_USER_ID=1001
+#    - export HOST_USER_ID=1001
     - docker-compose up -d
