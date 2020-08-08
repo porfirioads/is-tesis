@@ -11,7 +11,7 @@ before_script:
   - apk upgrade
 #  - apk add python python-dev py-pip build-base
   - apk add --update --no-cache curl py-pip
-  - pip install docker-compose
+  - pip install --quiet docker-compose
 
 build-prod:
   stage: build
