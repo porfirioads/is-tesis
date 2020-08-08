@@ -1,34 +1,3 @@
-#image: docker:stable
-#
-#services:
-#  - docker:dind
-#stages:
-#  - build
-#
-#before_script:
-#  - docker info
-#  - apk update
-#  - apk upgrade
-#  - apk add --no-cache docker-compose
-#  - docker-compose up -d
-#
-#build-prod:
-#  stage: build
-#  script:
-#    - docker-compose build
-#  #build_image:
-#  #  stage: build
-#  #  variables:
-#  #    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-#  #    DOCKER_HOST: tcp://docker:2375
-#  #  script:
-#  #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#  #    - docker build --build-arg HOST_USER_ID=1001 --pull -t $IMAGE_TAG -f Dockerfile .
-#  #    - docker push $IMAGE_TAG
-#  only:
-#    - master
-
-# .gitlab-ci.yml
 image: docker
 
 services:
@@ -36,6 +5,7 @@ services:
 
 stages:
   - build
+  - code-standard
   - testing
   - deploy
 
@@ -53,18 +23,26 @@ build-project:
     - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "GRANT ALL ON sigaz.* TO 'sigaz'@'%' IDENTIFIED BY 'sigaz_4YUNT4M13NT0';FLUSH PRIVILEGES;"
     - docker-compose exec -T app php artisan migrate:fresh --seed
 
+php-sniffer:
+  stage: code-standard
+  script: docker-compose exec -T app vendor/bin/phpcs
+
 unit-testing:
   stage: testing
   script:
-    - echo "Aquí se ejecutarán las pruebas unitarias"
+    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Unit
+
+unit-coverage:
+  stage: testing
+  script:
+    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Unit
 
 feature-testing:
   stage: testing
   script:
-    - echo "Aquí se ejecutarán las feature testing"
+    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Feature
 
-#prepare-laravel:
-#  stage: build
-#  script:
-#    -
-#    -
+feature-coverage:
+  stage: testing
+  script:
+    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Feature
