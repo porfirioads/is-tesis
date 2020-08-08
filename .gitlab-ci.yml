@@ -1,29 +1,38 @@
-image: docker:stable
+#image: docker:stable
+#
+#services:
+#  - docker:dind
+#stages:
+#  - build
+#
+#before_script:
+#  - docker info
+#  - apk update
+#  - apk upgrade
+#  - apk add --no-cache docker-compose
+#  - docker-compose up -d
+#
+#build-prod:
+#  stage: build
+#  script:
+#    - docker-compose build
+#  #build_image:
+#  #  stage: build
+#  #  variables:
+#  #    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+#  #    DOCKER_HOST: tcp://docker:2375
+#  #  script:
+#  #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#  #    - docker build --build-arg HOST_USER_ID=1001 --pull -t $IMAGE_TAG -f Dockerfile .
+#  #    - docker push $IMAGE_TAG
+#  only:
+#    - master
 
+# .gitlab-ci.yml
+image: docker
 services:
   - docker:dind
-stages:
-  - build
-
-before_script:
-  - docker info
-  - apk update
-  - apk upgrade
-  - apk add --no-cache docker-compose
-  - docker-compose up -d
-
-build-prod:
-  stage: build
+build:
   script:
-    - docker-compose build
-  #build_image:
-  #  stage: build
-  #  variables:
-  #    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-  #    DOCKER_HOST: tcp://docker:2375
-  #  script:
-  #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-  #    - docker build --build-arg HOST_USER_ID=1001 --pull -t $IMAGE_TAG -f Dockerfile .
-  #    - docker push $IMAGE_TAG
-  only:
-    - master
+    - apk add --no-cache docker-compose
+    - docker-compose up -d
