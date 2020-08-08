@@ -41,6 +41,7 @@ stages:
 build-docker:
   stage: build
   before_script:
+    - whoami
     - cp .env.example .env
   script:
     - apk add --no-cache docker-compose
@@ -50,7 +51,7 @@ build-docker:
 #    - sudo groupadd -g $HOST_USER_ID www
 #    - sudo useradd -u $HOST_USER_ID -ms /bin/bash -g www www
 #    - sudo chown -R www:porfirioadmin tesis-ing-software/
-    - sudo chmod -R 775 tesis-ing-software/
+    - chmod -R 775 tesis-ing-software/
     - docker-compose exec -T app php artisan key:generate
 
 #prepare-laravel:
