@@ -36,8 +36,10 @@ services:
 
 stages:
   - build
+  - testing
+  - deploy
 
-build-docker:
+build-project:
   stage: build
   before_script:
     - cp .env.example .env
@@ -48,8 +50,18 @@ build-docker:
     - HOST_USER_ID=$(grep HOST_USER_ID .env | xargs) && HOST_USER_ID=${HOST_USER_ID#*=}
     - cd .. && chmod -R 777 tesis-ing-software && cd tesis-ing-software
     - docker-compose exec -T app php artisan key:generate
-    - docker-compose exec -T db mysql -u root -p 4YUNT4M13NT0.Z4C4T3C45 -e 'GRANT ALL ON sigaz.* TO 'sigaz'@'%' IDENTIFIED BY 'sigaz_4YUNT4M13NT0';FLUSH PRIVILEGES;'
+    - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e 'GRANT ALL ON sigaz.* TO 'sigaz'@'%' IDENTIFIED BY 'sigaz_4YUNT4M13NT0';FLUSH PRIVILEGES;'
     - docker-compose exec app php artisan migrate:fresh --seed
+
+unit-testing:
+  stage: testing
+  script:
+    - echo "Aquí se ejecutarán las pruebas unitarias"
+
+feature-testing:
+  stage: testing
+  script:
+    - echo "Aquí se ejecutarán las feature testing"
 
 #prepare-laravel:
 #  stage: build
