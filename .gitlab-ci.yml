@@ -22,6 +22,7 @@ build-project:
   script:
     - docker-compose exec -T app php artisan key:generate
     - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "GRANT ALL ON sigaz.* TO 'sigaz'@'%' IDENTIFIED BY 'sigaz_4YUNT4M13NT0';FLUSH PRIVILEGES;"
+    - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "CREATE DATABASE IF NOT EXISTS sigaz_test"
     - docker-compose exec -T app php artisan migrate:fresh --seed
 
 #build-project:
