@@ -24,7 +24,9 @@
             <!--                        <file>./tests/Unit/U15_UsuarioControllerTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+            <!--            <directory suffix="Test.php">./tests/Feature</directory>-->
+            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
             <!--            <file>./tests/Feature/F01S01_GetUsers_UserListWithItems_Test.php</file>-->
             <!--            <file>./tests/Feature/F01S02_GetUsers_UserListEmpty_Test.php</file>-->
             <!--            <file>./tests/Feature/F02S01_Login_LoginCorrect_Test.php</file>-->
@@ -45,8 +47,7 @@
             <!--            <file>./tests/Feature/F08S03_InsertFeedback_NonExistentReport_Test.php</file>-->
             <!--            <file>./tests/Feature/F09S01_DeleteFeedback_SuccessDeletion_Test.php</file>-->
             <!--            <file>./tests/Feature/F09S02_DeleteFeedback_MissingData_Test.php</file>-->
-            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
-            <file>./tests/Unit/U14_StringsUtilsTest.php</file>
+            <file>./tests/Feature/F10S01_GetSupportList_ListWithITems_Test.php</file>
         </testsuite>
     </testsuites>
     <filter>
