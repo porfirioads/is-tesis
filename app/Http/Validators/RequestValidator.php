@@ -32,12 +32,14 @@ class RequestValidator
     {
         $this->errors = [];
 
+        // @codeCoverageIgnoreStart
         try {
             $this->prepareValidations();
         } catch (Exception $e) {
             Log::error($e);
             return false;
         }
+        // @codeCoverageIgnoreEnd
 
         $validator = Validator::make(
             $this->request->all(),
@@ -71,7 +73,10 @@ class RequestValidator
      */
     protected function prepareValidations()
     {
+
+        // @codeCoverageIgnoreStart
         throw new Exception('prepareValidations() aún no está implementado');
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -130,7 +135,9 @@ class RequestValidator
         foreach ($this->validations as $field => $validations) {
             foreach ($validations as $validation) {
                 if (gettype($validation) !== gettype('')) {
+                    // @codeCoverageIgnoreStart
                     continue;
+                    // @codeCoverageIgnoreEnd
                 }
 
                 $validationParts = explode(':', $validation);
@@ -139,12 +146,14 @@ class RequestValidator
                 $validationParameter =
                     count($validationParts) > 1 ? $validationParts[1] : false;
 
+                // @codeCoverageIgnoreStart
                 try {
                     $customMessages["$field.$validationType"] =
                         $messages["$field.$validationType"];
                 } catch (Exception $e) {
                     $customMessages["$field.$validationType"] = $e->getMessage();
                 }
+                // @codeCoverageIgnoreEnd
 
                 if ($validationParameter) {
                     $customMessages["$field.$validationType"] =

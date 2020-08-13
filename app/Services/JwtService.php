@@ -23,8 +23,10 @@ class JwtService extends BaseService
         $this->resetErrors();
 
         if (!$token) {
+            // @codeCoverageIgnoreStart
             $this->addError('auth', 'El token de autenticación es requerido');
             return $this->withoutErrors();
+            // @codeCoverageIgnoreEnd
         }
 
         $result = Token::validate($token, self::SECRET);
@@ -50,7 +52,9 @@ class JwtService extends BaseService
             return Token::getPayload($token, self::SECRET);
         }
 
+        // @codeCoverageIgnoreStart
         return null;
+        // @codeCoverageIgnoreEnd
     }
 
     /**

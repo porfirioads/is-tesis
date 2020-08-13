@@ -90,6 +90,7 @@ class UserService extends BaseService
         });
     }
 
+    // @codeCoverageIgnoreStart
     /**
      * Obtiene una instancia única de la clase.
      *
@@ -103,4 +104,5 @@ class UserService extends BaseService
 
         return UserService::$instance;
     }
+    // @codeCoverageIgnoreEnd
 }
