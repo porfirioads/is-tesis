@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// phpcs:ignore
 class F10S02_GetSupportList_EmptyList_Test extends F10_GetSupportList
 {
     public function testGivenIAmLoggedInTheSystem()
