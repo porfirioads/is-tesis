@@ -7,7 +7,7 @@ use App\Models\SeguimientoReporte;
 // phpcs:ignore
 class F07_GetPendingFeedback extends F00_GeneralSteps
 {
-    private static $responseData;
+    public static $responseData;
 
     /**
      * @And /^there are items in the pending feedback list$/

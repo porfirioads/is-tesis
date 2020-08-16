@@ -9,7 +9,7 @@ use Behat\Behat\Tester\Exception\PendingException;
 // phpcs:ignore
 class F08_InsertFeedback extends F00_GeneralSteps
 {
-    private static $responseData;
+    public static $responseData;
 
     private function httpInsertFeedback($data, $expectedStatus)
     {

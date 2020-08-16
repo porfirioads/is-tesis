@@ -6,7 +6,7 @@
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+            <!--            <directory suffix="Test.php">./tests/Unit</directory>-->
             <!--            <file>./tests/Unit/U01_JwtServiceTest.php</file>-->
             <!--            <file>./tests/Unit/U02_UserServiceTest.php</file>-->
             <!--            <file>./tests/Unit/U03_ReportServiceTest.php</file>-->
@@ -19,12 +19,15 @@
             <!--            <file>./tests/Unit/U10_InsertReportValidatorTest.php</file>-->
             <!--            <file>./tests/Unit/U11_LoginValidatorTest.php</file>-->
             <!--            <file>./tests/Unit/U12_UpdateTipoReporteValidatorTest.php</file>-->
-            <!--                        <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
-            <!--                        <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
-            <!--                        <file>./tests/Unit/U15_UsuarioControllerTest.php</file>-->
+            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
+            <!--            <file>./tests/Unit/U15_UsuarioControllerTest.php</file>-->
+            <!--            <file>./tests/Unit/U16_ApoyoControllerTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
+            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
+            <file>./tests/Unit/U14_StringsUtilsTest.php</file>
             <!--            <file>./tests/Feature/F01S01_GetUsers_UserListWithItems_Test.php</file>-->
             <!--            <file>./tests/Feature/F01S02_GetUsers_UserListEmpty_Test.php</file>-->
             <!--            <file>./tests/Feature/F02S01_Login_LoginCorrect_Test.php</file>-->
@@ -45,8 +48,8 @@
             <!--            <file>./tests/Feature/F08S03_InsertFeedback_NonExistentReport_Test.php</file>-->
             <!--            <file>./tests/Feature/F09S01_DeleteFeedback_SuccessDeletion_Test.php</file>-->
             <!--            <file>./tests/Feature/F09S02_DeleteFeedback_MissingData_Test.php</file>-->
-            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
-            <file>./tests/Unit/U14_StringsUtilsTest.php</file>
+            <!--            <file>./tests/Feature/F10S01_GetSupportList_ListWithITems_Test.php</file>-->
+            <!--                        <file>./tests/Feature/F10S02_GetSupportList_EmptyList_Test.php</file>-->
         </testsuite>
     </testsuites>
     <filter>

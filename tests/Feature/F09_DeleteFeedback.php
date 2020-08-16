@@ -8,7 +8,7 @@ use Behat\Behat\Tester\Exception\PendingException;
 // phpcs:ignore
 class F09_DeleteFeedback extends F00_GeneralSteps
 {
-    private static $responseData;
+    public static $responseData;
 
     private function httpDeleteReport($data, $expected_status)
     {

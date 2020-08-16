@@ -7,7 +7,7 @@ use App\Services\DatabaseEnums;
 // phpcs:ignore
 class F05_UpdateReportType extends F00_GeneralSteps
 {
-    private static $responseData;
+    public static $responseData;
 
     /**
      * @When /^I change the report type with other valid$/

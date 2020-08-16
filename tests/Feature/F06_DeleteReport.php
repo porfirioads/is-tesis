@@ -5,7 +5,7 @@ namespace Tests\Feature;
 // phpcs:ignore
 class F06_DeleteReport extends F00_GeneralSteps
 {
-    private static $responseData;
+    public static $responseData;
 
     private function deleteReport($reporte_id, $expected_status)
     {

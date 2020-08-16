@@ -28,4 +28,7 @@ Route::group(['middleware' => ['jwt']], function () {
     Route::get('reportes/seguimiento', 'ReporteController@getPendingFeedback');
     Route::post('reportes/seguimiento', 'ReporteController@insertFeedback');
     Route::delete('reportes/seguimiento', 'ReporteController@deleteFeedback');
+
+    // Apoyos
+    Route::get('apoyos', 'ApoyoController@getSupports');
 });

@@ -9,6 +9,7 @@ use Tests\DatabaseTestCase;
 class F00_GeneralSteps extends DatabaseTestCase implements Context
 {
     public static $authToken;
+    public static $responseData;
 
     /**
      * @Given /^I am logged in the system$/
@@ -22,5 +23,29 @@ class F00_GeneralSteps extends DatabaseTestCase implements Context
         $responseData = $response->baseResponse->original;
         F00_GeneralSteps::$authToken = $responseData['token'];
         $this->assertNotNull(F00_GeneralSteps::$authToken);
+    }
+
+    public function httpGet($url, $expectedStatus, $data = [], $headers = [])
+    {
+        // TODO: Colocar $data como url params.
+        $response = $this->get($url, $headers);
+        $response->assertStatus($expectedStatus);
+        $responseData = $response->baseResponse->original;
+        F00_GeneralSteps::$responseData = $responseData;
+    }
+
+    public function httpPost($url, $expectedStatus, $data = [], $headers = [])
+    {
+        $response = $this->post('$url', $data, $headers);
+        $response->assertStatus($expectedStatus);
+        $responseData = $response->baseResponse->original;
+        F00_GeneralSteps::$responseData = $responseData;
+    }
+
+    public function assertArrayHasKeys($keys, $array)
+    {
+        foreach ($keys as $key) {
+            $this->assertArrayHasKey($key, $array);
+        }
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 // phpcs:ignore
 class F04_InsertReport extends F00_GeneralSteps
 {
-    private static $responseData;
+    public static $responseData;
 
     /**
      * @When /^I make a report with the correct data$/
