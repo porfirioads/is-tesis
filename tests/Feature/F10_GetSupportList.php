@@ -3,11 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\BenSolicitud;
-use Behat\Behat\Tester\Exception\PendingException;
-use BenApoyoSecretariaSeeder;
-use BenApoyoSeeder;
-use BenBeneficiarioSeeder;
-use BenSolicitudesSeeder;
 use Illuminate\Support\Facades\Log;
 
 // phpcs:ignore
