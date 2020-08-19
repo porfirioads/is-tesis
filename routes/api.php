@@ -31,4 +31,5 @@ Route::group(['middleware' => ['jwt']], function () {
 
     // Apoyos
     Route::get('apoyos', 'ApoyoController@getSupports');
+    Route::post('apoyos', 'ApoyoController@addSupportRequest');
 });

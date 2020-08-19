@@ -8,6 +8,9 @@ stages:
   - deploy
 
 test:
+  only:
+    - master
+    - develop
   stage: test
   script:
     # Build project

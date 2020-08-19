@@ -9,7 +9,9 @@ use Tests\DatabaseTestCase;
 class F00_GeneralSteps extends DatabaseTestCase implements Context
 {
     public static $authToken;
+    public static $requestData;
     public static $responseData;
+    public static $responseStatus;
 
     /**
      * @Given /^I am logged in the system$/
@@ -34,12 +36,17 @@ class F00_GeneralSteps extends DatabaseTestCase implements Context
         F00_GeneralSteps::$responseData = $responseData;
     }
 
-    public function httpPost($url, $expectedStatus, $data = [], $headers = [])
+    public function httpPost($url, $data = [], $headers = [])
     {
-        $response = $this->post('$url', $data, $headers);
-        $response->assertStatus($expectedStatus);
-        $responseData = $response->baseResponse->original;
-        F00_GeneralSteps::$responseData = $responseData;
+        $response = $this->post($url, $data, $headers);
+        $this->assertNotNull($response);
+
+        F00_GeneralSteps::$responseData = json_decode(
+            json_encode($response->baseResponse->original),
+            true
+        );
+
+        F00_GeneralSteps::$responseStatus = $response->status();
     }
 
     public function assertArrayHasKeys($keys, $array)

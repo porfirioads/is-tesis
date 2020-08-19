@@ -25,31 +25,19 @@
             <!--            <file>./tests/Unit/U16_ApoyoControllerTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
-            <file>./tests/Unit/U14_StringsUtilsTest.php</file>
-            <!--            <file>./tests/Feature/F01S01_GetUsers_UserListWithItems_Test.php</file>-->
-            <!--            <file>./tests/Feature/F01S02_GetUsers_UserListEmpty_Test.php</file>-->
-            <!--            <file>./tests/Feature/F02S01_Login_LoginCorrect_Test.php</file>-->
-            <!--            <file>./tests/Feature/F02S02_Login_LoginIncorrect_Test.php</file>-->
-            <!--            <file>./tests/Feature/F02S03_Login_LoginWithMissingData_Test.php</file>-->
-            <!--            <file>./tests/Feature/F02S04_Login_ValidateCorrectToken_Test.php</file>-->
-            <!--            <file>./tests/Feature/F02S05_Login_ValidateIncorrectToken_Test.php</file>-->
-            <!--            <file>./tests/Feature/F03S01_GetReports_ReportListWithItems_Test.php</file>-->
-            <!--            <file>./tests/Feature/F04S01_InsertReport_SuccessfulReportInsertion_Test.php</file>-->
-            <!--            <file>./tests/Feature/F04S02_InsertReport_MissingDataReportInsertion_Test.php</file>-->
-            <!--            <file>./tests/Feature/F05S01_UpdateReportType_Successful_Test.php</file>-->
-            <!--            <file>./tests/Feature/F05S02_UpdateReportType_NonExistentType_Test.php</file>-->
-            <!--            <file>./tests/Feature/F06S01_DeleteReport_SuccessfulDeletion_Test.php</file>-->
-            <!--            <file>./tests/Feature/F06S02_DeleteReport_NonExistentDeletion_Test.php</file>-->
-            <!--            <file>./tests/Feature/F07S01_GetPendingFeedback_ListWithItems_Test.php</file>-->
-            <!--            <file>./tests/Feature/F08S01_InsertFeedback_Successful_Test.php</file>-->
-            <!--            <file>./tests/Feature/F08S02_InsertFeedback_MissingData_Test.php</file>-->
-            <!--            <file>./tests/Feature/F08S03_InsertFeedback_NonExistentReport_Test.php</file>-->
-            <!--            <file>./tests/Feature/F09S01_DeleteFeedback_SuccessDeletion_Test.php</file>-->
-            <!--            <file>./tests/Feature/F09S02_DeleteFeedback_MissingData_Test.php</file>-->
-            <!--            <file>./tests/Feature/F10S01_GetSupportList_ListWithITems_Test.php</file>-->
-            <!--                        <file>./tests/Feature/F10S02_GetSupportList_EmptyList_Test.php</file>-->
+            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F01_GetUsers</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F02_Login</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F03_GetReports</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F04_InsertReport</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F05_UpdateReportType</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F06_DeleteReport</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F07_GetPendingFeedback</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F08_InsertFeedback</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F09_DeleteFeedback</directory>-->
+<!--            <directory suffix="Test.php">./tests/Feature/F10_GetSupportList</directory>-->
+            <directory suffix="Test.php">./tests/Feature/F11_AddSupportRequest</directory>
         </testsuite>
     </testsuites>
     <filter>

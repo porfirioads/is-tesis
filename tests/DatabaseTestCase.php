@@ -31,6 +31,8 @@ class DatabaseTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->withoutExceptionHandling();
+
         if (!DatabaseTestCase::$dbSeeded) {
             $this->artisan('migrate:fresh --seed');
             DatabaseTestCase::$dbSeeded = true;

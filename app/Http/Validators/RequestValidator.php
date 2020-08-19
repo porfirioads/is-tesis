@@ -120,14 +120,25 @@ class RequestValidator
             'reporte_id.exists' => 'El id debe corresponder a un reporte existente',
             // estatus
             'estatus.required' => 'El estatus es requerido',
-            'estatus.in' => 'El estatus debe ser alguno de los siguientes: ' .
-                implode(', ', DatabaseEnums::REPORTE_ESTATUS),
+            'estatus.in' => 'El estatus es inválido',
             // mensaje
             'mensaje.required' => 'El mensaje es requerido',
             'mensaje.max' => 'El mensaje debe contener máximo 500 caracteres',
             // seguimiento_id
             'seguimiento_id.required' => 'El id del seguimiento es requerido',
             'seguimiento_id.exists' => 'El id debe corresponder a un seguimiento existente',
+            // beneficiario_id
+            'beneficiario_id.required' => 'El id del beneficiario es requerido',
+            'beneficiario_id.exists' => 'El id debe corresponder a un beneficiario existente',
+            // apoyo_secretaria_id
+            'apoyo_secretaria_id.required' => 'El id del apoyo de secretaría es requerido',
+            'apoyo_secretaria_id.exists' => 'El id debe corresponder a un apoyo de secretaría existente',
+            // fecha_solicitud
+            'fecha_solicitud.date_format' => 'El formato de la fecha de entrega es inválido',
+            // fecha_aceptacion
+            'fecha_aceptacion.date_format' => 'El formato de la fecha de entrega es inválido',
+            // fecha_entrega
+            'fecha_entrega.date_format' => 'El formato de la fecha de entrega es inválido'
         ];
 
         $customMessages = [];

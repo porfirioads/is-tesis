@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\BenSolicitud;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class SupportService extends BaseService
@@ -37,5 +38,17 @@ class SupportService extends BaseService
         });
 
         return $beneficiarios;
+    }
+
+    public function addSupportRequest(array $data)
+    {
+        $solicitud = new BenSolicitud($data);
+
+        if (!$solicitud->fecha_solicitud) {
+            $solicitud->fecha_solicitud = Carbon::now()->format('Y-m-d H:i:s');
+        }
+
+        $solicitud->save();
+        return $solicitud;
     }
 }

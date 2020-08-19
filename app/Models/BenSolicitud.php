@@ -37,12 +37,13 @@ class BenSolicitud extends Model
 
     protected $fillable = [
         'fecha_solicitud',
-        'estatus',
+        'fecha_aceptacion',
         'fecha_entrega',
-        'observaciones',
-        'evidencia',
+        'estatus',
         'monto',
-        'catalogo_apoyos_id'
+        'evidencia',
+        'beneficiario_id',
+        'apoyo_secretaria_id'
     ];
 
     public function beneficiario()
