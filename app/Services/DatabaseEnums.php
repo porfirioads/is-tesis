@@ -37,10 +37,12 @@ class DatabaseEnums
     public const BEN_EST_PENDIENTE = 'pendiente';
     public const BEN_EST_APROBADO = 'aprobado';
     public const BEN_EST_DENEGADO = 'denegado';
+    public const BEN_EST_ENTREGADO = 'entregado';
 
     public const BEN_SOLICITUD_ESTATUS = [
         self::BEN_EST_PENDIENTE,
         self::BEN_EST_APROBADO,
-        self::BEN_EST_DENEGADO
+        self::BEN_EST_DENEGADO,
+        self::BEN_EST_ENTREGADO
     ];
 }

@@ -49,6 +49,19 @@ class F00_GeneralSteps extends DatabaseTestCase implements Context
         F00_GeneralSteps::$responseStatus = $response->status();
     }
 
+    public function httpPut($url, $data = [], $headers = [])
+    {
+        $response = $this->put($url, $data, $headers);
+        $this->assertNotNull($response);
+
+        F00_GeneralSteps::$responseData = json_decode(
+            json_encode($response->baseResponse->original),
+            true
+        );
+
+        F00_GeneralSteps::$responseStatus = $response->status();
+    }
+
     public function assertArrayHasKeys($keys, $array)
     {
         foreach ($keys as $key) {

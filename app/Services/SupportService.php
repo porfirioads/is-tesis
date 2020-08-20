@@ -51,4 +51,14 @@ class SupportService extends BaseService
         $solicitud->save();
         return $solicitud;
     }
+
+    public function updateSupportRequestStatus(array $data)
+    {
+        $solicitud = BenSolicitud::find($data['solicitud_id']);
+        $solicitud->fill($data);
+        $solicitud->save();
+        Log::debug($data);
+        Log::debug($solicitud);
+        return $solicitud;
+    }
 }

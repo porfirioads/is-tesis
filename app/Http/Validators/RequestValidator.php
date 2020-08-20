@@ -137,8 +137,13 @@ class RequestValidator
             'fecha_solicitud.date_format' => 'El formato de la fecha de entrega es inválido',
             // fecha_aceptacion
             'fecha_aceptacion.date_format' => 'El formato de la fecha de entrega es inválido',
+            'fecha_aceptacion.required_if' => 'La fecha de aceptación es requerida',
             // fecha_entrega
-            'fecha_entrega.date_format' => 'El formato de la fecha de entrega es inválido'
+            'fecha_entrega.date_format' => 'El formato de la fecha de entrega es inválido',
+            'fecha_entrega.required_if' => 'La fecha de entrega es requerida',
+            // solicitud_id
+            'solicitud_id.required' => 'El id de la solicitud es requerido',
+            'solicitud_id.exists' => 'El id debe corresponder a una solicitud existente',
         ];
 
         $customMessages = [];
