@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose exec app vendor/bin/phpcs
+docker-compose exec -T app vendor/bin/phpcs

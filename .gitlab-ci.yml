@@ -7,30 +7,44 @@ stages:
   - test
   - deploy
 
-test:
+#test:
+#  only:
+#    - master
+#    - develop
+#  stage: test
+#  script:
+#    # Build project
+#    - cp .env.example .env
+#    - apk add --no-cache docker-compose
+#    - docker-compose up -d
+#    - docker run --rm -v $(pwd):/app composer install
+#    - HOST_USER_ID=$(grep HOST_USER_ID .env | xargs) && HOST_USER_ID=${HOST_USER_ID#*=}
+#    - cd .. && chmod -R 777 tesis-ing-software && cd tesis-ing-software
+#    - docker-compose exec -T app php artisan key:generate
+#    - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "GRANT ALL ON sigaz.* TO 'sigaz'@'%' IDENTIFIED BY 'sigaz_4YUNT4M13NT0';FLUSH PRIVILEGES;"
+#    - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "CREATE DATABASE IF NOT EXISTS sigaz_test"
+#    - docker-compose exec -T app php artisan migrate:fresh --seed
+#    # Code standard
+#    - docker-compose exec -T app vendor/bin/phpcs
+#    # Unit testing
+#    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Unit
+#    # Unit coverage
+#    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Unit
+#    # Feature testing
+#    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Feature
+#    # Feature coverage
+#    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Feature
+
+deploy:
   only:
-    - master
-    - develop
-  stage: test
+    - DeployTest
+  stage: deploy
   script:
-    # Build project
-    - cp .env.example .env
-    - apk add --no-cache docker-compose
-    - docker-compose up -d
-    - docker run --rm -v $(pwd):/app composer install
-    - HOST_USER_ID=$(grep HOST_USER_ID .env | xargs) && HOST_USER_ID=${HOST_USER_ID#*=}
-    - cd .. && chmod -R 777 tesis-ing-software && cd tesis-ing-software
-    - docker-compose exec -T app php artisan key:generate
-    - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "GRANT ALL ON sigaz.* TO 'sigaz'@'%' IDENTIFIED BY 'sigaz_4YUNT4M13NT0';FLUSH PRIVILEGES;"
-    - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "CREATE DATABASE IF NOT EXISTS sigaz_test"
-    - docker-compose exec -T app php artisan migrate:fresh --seed
-    # Code standard
-    - docker-compose exec -T app vendor/bin/phpcs
-    # Unit testing
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Unit
-    # Unit coverage
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Unit
-    # Feature testing
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Feature
-    # Feature coverage
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Feature
+    # Prepare ssh connection
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh/pems
+    - echo "$PRIVATE_KEY" > ~/.ssh/pems/tesis.pem
+    - chmod 400 ~/.ssh/pems/tesis.pem
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config
+#    - ssh -i ~/.ssh/pems/tesis.pem $USER@$SERVER 'bash' < ./bashcmd/deploy.sh
+    - ssh -i ~/.ssh/pems/tesis.pem $USER@$SERVER 'tesis-ing-software/bashcmd/deploy.sh'
