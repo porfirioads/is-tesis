@@ -68,4 +68,25 @@ class F00_GeneralSteps extends DatabaseTestCase implements Context
             $this->assertArrayHasKey($key, $array);
         }
     }
+
+    public function assertArrayHasValue($value, $array)
+    {
+        $obtained = json_encode($array, JSON_PRETTY_PRINT);
+
+        \Log::debug($obtained);
+
+        $this->assertContains(
+            $value,
+            $array,
+            "Failed asserting that '$value' is in the array $obtained"
+        );
+    }
+
+    public function assertErrorResponseHasValue($value, $field)
+    {
+        $data = F00_GeneralSteps::$responseData;
+        $this->assertArrayHasKey('errors', $data);
+        $this->assertArrayHasKey($field, $data['errors']);
+        $this->assertArrayHasValue($value, $data['errors'][$field]);
+    }
 }

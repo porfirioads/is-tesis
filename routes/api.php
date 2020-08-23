@@ -33,4 +33,7 @@ Route::group(['middleware' => ['jwt']], function () {
     Route::get('apoyos', 'ApoyoController@getSupports');
     Route::post('apoyos', 'ApoyoController@addSupportRequest');
     Route::put('apoyos', 'ApoyoController@updateSupportRequestStatus');
+
+    // Beneficiarios
+    Route::post('beneficiarios', 'BeneficiarioController@insertBeneficiary');
 });

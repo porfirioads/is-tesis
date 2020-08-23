@@ -5,6 +5,7 @@ namespace App\Http\Validators;
 use App\Services\DatabaseEnums;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Validator;
 
@@ -144,6 +145,23 @@ class RequestValidator
             // solicitud_id
             'solicitud_id.required' => 'El id de la solicitud es requerido',
             'solicitud_id.exists' => 'El id debe corresponder a una solicitud existente',
+            // nombre
+            'nombre.required' => 'El nombre es requerido',
+            // primer_apellido
+            'primer_apellido.required' => 'El primer apellido es requerido',
+            // sexo
+            'sexo.required' => 'El sexo es requerido',
+            // telefono
+            'telefono.required' => 'El telefono es requerido',
+            // nombre_vialidad
+            'nombre_vialidad.required' => 'El nombre de la vialidad es requerido',
+            // numero_exterior
+            'numero_exterior.required' => 'El número exterior es requerido',
+            // colonia
+            'colonia.required' => 'La colonia es requerida',
+            // curp
+            'curp.required' => 'La curp es requerida',
+            'curp.unique' => 'La curp proporcionada ya existe',
         ];
 
         $customMessages = [];
@@ -193,5 +211,20 @@ class RequestValidator
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    protected function getFieldMaxSize($table, $field)
+    {
+        $columns = DB::select(DB::raw("SHOW COLUMNS FROM `$table`"));
+
+        foreach ($columns as $column) {
+            if ($column->Field === $field) {
+                $openParPos = strpos($column->Type, '(');
+                $closeParPos = strpos($column->Type, ')');
+                $size = $closeParPos - $openParPos;
+                $max = intval(substr($column->Type, $openParPos + 1, $size - 1));
+                return $max;
+            }
+        }
     }
 }

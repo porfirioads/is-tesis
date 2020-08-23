@@ -36,5 +36,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class BenBeneficiario extends Model
 {
-    //
+    protected $table = 'ben_beneficiarios';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre',
+        'primer_apellido',
+        'segundo_apellido',
+        'sexo',
+        'curp',
+        'telefono',
+        'nombre_vialidad',
+        'numero_exterior',
+        'numero_interior',
+        'colonia',
+    ];
 }
