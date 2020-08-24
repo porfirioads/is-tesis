@@ -3,8 +3,8 @@
 # Get latest code
 echo "Getting latest code"
 cd tesis-ing-software || exit
-git checkout DeployTest
-git pull origin DeployTest
+git checkout master
+git pull origin master
 cd ..
 sudo chown -R www:ubuntu tesis-ing-software
 sudo chmod -R 775 tesis-ing-software
