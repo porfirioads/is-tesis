@@ -37,7 +37,7 @@ stages:
 
 deploy:
   only:
-    - DeployTest
+    - master
   stage: deploy
   script:
     # Prepare ssh connection
