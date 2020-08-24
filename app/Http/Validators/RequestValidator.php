@@ -5,6 +5,7 @@ namespace App\Http\Validators;
 use App\Services\DatabaseEnums;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Validator;
 
@@ -120,14 +121,47 @@ class RequestValidator
             'reporte_id.exists' => 'El id debe corresponder a un reporte existente',
             // estatus
             'estatus.required' => 'El estatus es requerido',
-            'estatus.in' => 'El estatus debe ser alguno de los siguientes: ' .
-                implode(', ', DatabaseEnums::REPORTE_ESTATUS),
+            'estatus.in' => 'El estatus es inválido',
             // mensaje
             'mensaje.required' => 'El mensaje es requerido',
             'mensaje.max' => 'El mensaje debe contener máximo 500 caracteres',
             // seguimiento_id
             'seguimiento_id.required' => 'El id del seguimiento es requerido',
             'seguimiento_id.exists' => 'El id debe corresponder a un seguimiento existente',
+            // beneficiario_id
+            'beneficiario_id.required' => 'El id del beneficiario es requerido',
+            'beneficiario_id.exists' => 'El id debe corresponder a un beneficiario existente',
+            // apoyo_secretaria_id
+            'apoyo_secretaria_id.required' => 'El id del apoyo de secretaría es requerido',
+            'apoyo_secretaria_id.exists' => 'El id debe corresponder a un apoyo de secretaría existente',
+            // fecha_solicitud
+            'fecha_solicitud.date_format' => 'El formato de la fecha de entrega es inválido',
+            // fecha_aceptacion
+            'fecha_aceptacion.date_format' => 'El formato de la fecha de entrega es inválido',
+            'fecha_aceptacion.required_if' => 'La fecha de aceptación es requerida',
+            // fecha_entrega
+            'fecha_entrega.date_format' => 'El formato de la fecha de entrega es inválido',
+            'fecha_entrega.required_if' => 'La fecha de entrega es requerida',
+            // solicitud_id
+            'solicitud_id.required' => 'El id de la solicitud es requerido',
+            'solicitud_id.exists' => 'El id debe corresponder a una solicitud existente',
+            // nombre
+            'nombre.required' => 'El nombre es requerido',
+            // primer_apellido
+            'primer_apellido.required' => 'El primer apellido es requerido',
+            // sexo
+            'sexo.required' => 'El sexo es requerido',
+            // telefono
+            'telefono.required' => 'El telefono es requerido',
+            // nombre_vialidad
+            'nombre_vialidad.required' => 'El nombre de la vialidad es requerido',
+            // numero_exterior
+            'numero_exterior.required' => 'El número exterior es requerido',
+            // colonia
+            'colonia.required' => 'La colonia es requerida',
+            // curp
+            'curp.required' => 'La curp es requerida',
+            'curp.unique' => 'La curp proporcionada ya existe',
         ];
 
         $customMessages = [];
@@ -177,5 +211,20 @@ class RequestValidator
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    protected function getFieldMaxSize($table, $field)
+    {
+        $columns = DB::select(DB::raw("SHOW COLUMNS FROM `$table`"));
+
+        foreach ($columns as $column) {
+            if ($column->Field === $field) {
+                $openParPos = strpos($column->Type, '(');
+                $closeParPos = strpos($column->Type, ')');
+                $size = $closeParPos - $openParPos;
+                $max = intval(substr($column->Type, $openParPos + 1, $size - 1));
+                return $max;
+            }
+        }
     }
 }

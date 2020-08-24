@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ReporteSeeder::class);
         $this->call(IncidenciaReporteSeeder::class);
         $this->call(SeguimientoReporteSeeder::class);
+        $this->call(BenApoyoSeeder::class);
+        $this->call(BenBeneficiarioSeeder::class);
+        $this->call(BenApoyoSecretariaSeeder::class);
+        $this->call(BenSolicitudesSeeder::class);
     }
 }

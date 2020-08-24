@@ -54,8 +54,6 @@ class UserService extends BaseService
     {
         $usuarios = $this->get([['username', '=', $username]]);
 
-        Log::debug($usuarios);
-
         if (!count($usuarios) || !Hash::check($password, $usuarios->first()->password)) {
             return null;
         }
@@ -91,6 +89,7 @@ class UserService extends BaseService
     }
 
     // @codeCoverageIgnoreStart
+
     /**
      * Obtiene una instancia única de la clase.
      *

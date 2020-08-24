@@ -11,4 +11,5 @@
     <file>tests/</file>
     <exclude-pattern>coverage-feature/</exclude-pattern>
     <exclude-pattern>coverage-unit/</exclude-pattern>
+    <exclude-pattern>coverage-report/</exclude-pattern>
 </ruleset>

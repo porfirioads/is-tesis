@@ -8,6 +8,9 @@ stages:
   - deploy
 
 test:
+  only:
+    - master
+    - develop
   stage: test
   script:
     # Build project
@@ -31,3 +34,17 @@ test:
     - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Feature
     # Feature coverage
     - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Feature
+
+deploy:
+  only:
+    - master
+  stage: deploy
+  script:
+    # Prepare ssh connection
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh/pems
+    - echo "$PRIVATE_KEY" > ~/.ssh/pems/tesis.pem
+    - chmod 400 ~/.ssh/pems/tesis.pem
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config
+#    - ssh -i ~/.ssh/pems/tesis.pem $USER@$SERVER 'bash' < ./bashcmd/deploy.sh
+    - ssh -i ~/.ssh/pems/tesis.pem $USER@$SERVER 'tesis-ing-software/bashcmd/deploy.sh'
