@@ -12,4 +12,16 @@ class BeneficiaryService extends BaseService
         $beneficiary->save();
         return $beneficiary;
     }
+
+    public function searchBeneficiary(array $searchParams)
+    {
+        $wheres = [];
+
+        foreach ($searchParams as $key => $value) {
+            array_push($wheres, [$key, '=', $value]);
+        }
+
+        $beneficiaries = BenBeneficiario::where($wheres)->get();
+        return $beneficiaries;
+    }
 }

@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BenSolicitud whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BenSolicitud whereMonto($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\BenApoyoSecretaria $apoyoSecretaria
+ * @property-read \App\Models\BenBeneficiario $beneficiario
  */
 class BenSolicitud extends Model
 {

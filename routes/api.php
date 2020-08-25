@@ -36,4 +36,5 @@ Route::group(['middleware' => ['jwt']], function () {
 
     // Beneficiarios
     Route::post('beneficiarios', 'BeneficiarioController@insertBeneficiary');
+    Route::post('beneficiarios/buscar', 'BeneficiarioController@searchBeneficiary');
 });

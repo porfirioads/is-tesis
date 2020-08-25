@@ -26,8 +26,8 @@
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
-            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
-            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
+                        <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
+                        <file>./tests/Unit/U14_StringsUtilsTest.php</file>
             <!--            <directory suffix="Test.php">./tests/Feature/F01_GetUsers</directory>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F02_Login</directory>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F03_GetReports</directory>-->
@@ -41,6 +41,7 @@
             <!--            <directory suffix="Test.php">./tests/Feature/F11_AddSupportRequest</directory>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F12_UpdateSupportRequestStatus</directory>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F13_RegisterBeneficiary</directory>-->
+            <!--                        <directory suffix="Test.php">./tests/Feature/F14_SearchBeneficiary</directory>-->
         </testsuite>
     </testsuites>
     <filter>

@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BenApoyoSecretaria whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BenApoyoSecretaria whereSecretariaId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\BenApoyo $apoyo
+ * @property-read \App\Models\Secretaria $secretaria
  */
 class BenApoyoSecretaria extends Model
 {

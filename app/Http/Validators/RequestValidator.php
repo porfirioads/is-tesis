@@ -162,6 +162,7 @@ class RequestValidator
             // curp
             'curp.required' => 'La curp es requerida',
             'curp.unique' => 'La curp proporcionada ya existe',
+            'curp.exists' => 'La curp proporcionada no existe',
         ];
 
         $customMessages = [];
