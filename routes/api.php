@@ -17,6 +17,9 @@ Route::get('usuarios', 'UsuarioController@getUsers');
 
 Route::post('login', 'UsuarioController@login');
 
+
+Route::post('v2/login', 'UserController@login');
+
 Route::group(['middleware' => ['jwt']], function () {
     Route::post('validate_token', 'UsuarioController@validateToken');
 

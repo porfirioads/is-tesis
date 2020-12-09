@@ -6,7 +6,7 @@
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+            <!--            <directory suffix="Test.php">./tests/Unit</directory>-->
             <!--            <file>./tests/Unit/U01_JwtServiceTest.php</file>-->
             <!--            <file>./tests/Unit/U02_UserServiceTest.php</file>-->
             <!--            <file>./tests/Unit/U03_ReportServiceTest.php</file>-->
@@ -25,9 +25,10 @@
             <!--            <file>./tests/Unit/U16_ApoyoControllerTest.php</file>-->
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-                        <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>
-                        <file>./tests/Unit/U14_StringsUtilsTest.php</file>
+            <directory suffix="Test.php">./tests/Feature/F00_InsertarSolicitud</directory>
+            <!--            <directory suffix="Test.php">./tests/Feature</directory>-->
+            <!--            <file>./tests/Unit/U13_ObjectsUtilsTest.php</file>-->
+            <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F01_GetUsers</directory>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F02_Login</directory>-->
             <!--            <directory suffix="Test.php">./tests/Feature/F03_GetReports</directory>-->
