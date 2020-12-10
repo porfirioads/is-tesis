@@ -25,15 +25,15 @@ test:
     - docker-compose exec -T db mysql -u root -p'4YUNT4M13NT0.Z4C4T3C45' -e "CREATE DATABASE IF NOT EXISTS sigaz_test"
     - docker-compose exec -T app php artisan migrate:fresh --seed
     # Code standard
-    - docker-compose exec -T app vendor/bin/phpcs
+    # - docker-compose exec -T app vendor/bin/phpcs
     # Unit testing
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Unit
+    # - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Unit
     # Unit coverage
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Unit
+    # - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Unit
     # Feature testing
     - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --testsuite=Feature
     # Feature coverage
-    - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Feature
+    # - docker-compose exec -T app php artisan optimize:clear && docker-compose exec -T app vendor/bin/phpunit --testdox --coverage-text --testsuite=Feature
 
 deploy:
   only:
