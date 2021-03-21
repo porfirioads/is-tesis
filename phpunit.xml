@@ -23,6 +23,7 @@
             <!--            <file>./tests/Unit/U14_StringsUtilsTest.php</file>-->
             <!--            <file>./tests/Unit/U15_UsuarioControllerTest.php</file>-->
             <!--            <file>./tests/Unit/U16_ApoyoControllerTest.php</file>-->
+            <file>./tests/Unit/U00_InsertSupportRequestValidatorTest.php</file>
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature/F00_InsertarSolicitud</directory>
